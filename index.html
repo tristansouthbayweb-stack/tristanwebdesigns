@@ -3,127 +3,797 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Koda Creative | Premium Web Design</title>
+    <title>Koda Creative | Premium Web Design & AI Solutions</title>
+    <meta name="description" content="Koda Creative builds brand new, high-performance websites and AI receptionists for businesses. Affordable monthly plans starting at $275/mo.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            light: '#E8C84A',
+                            dark: '#B5952F',
+                        }
+                    },
+                    fontFamily: {
+                        display: ['"Playfair Display"', 'serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
+        html { scroll-behavior: smooth; }
         body { font-family: 'Inter', sans-serif; }
         h1, h2, h3 { font-family: 'Playfair Display', serif; }
-        .hero-bg {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
+
+        /* Animated gradient border on pricing cards */
+        .pricing-card {
+            position: relative;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
-        .gold-text { color: #D4AF37; }
-        .gold-border { border-color: #D4AF37; }
-        .gold-bg { background-color: #D4AF37; }
-        .gold-hover:hover { background-color: #B5952F; }
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(212, 175, 55, 0.15);
+        }
+        .pricing-featured {
+            border: 2px solid #D4AF37;
+        }
+        .pricing-featured::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(135deg, #D4AF37, #B5952F, #D4AF37);
+            border-radius: 0.5rem;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(8px);
+        }
+
+        /* Fade in on scroll animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .mobile-menu.open {
+            max-height: 300px;
+        }
+
+        /* Subtle glow on gold buttons */
+        .btn-gold {
+            background-color: #D4AF37;
+            color: #000;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            background-color: #B5952F;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Stats counter */
+        .stat-number {
+            background: linear-gradient(135deg, #D4AF37, #E8C84A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Review bubbles */
+        .review-bubble {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            border-radius: 1rem;
+            padding: 1.25rem 1.5rem;
+            backdrop-filter: blur(8px);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+        }
+        .review-bubble:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(212, 175, 55, 0.08);
+        }
+        .review-stars {
+            color: #D4AF37;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+        }
+        .review-text {
+            font-style: italic;
+            color: #d1d5db;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+        .review-author {
+            color: #9ca3af;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .review-avatar {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+        .reviews-marquee {
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+        }
+        .reviews-marquee-inner {
+            display: flex;
+            gap: 1.5rem;
+            animation: marquee 35s linear infinite;
+            width: max-content;
+        }
+        .reviews-marquee-inner:hover {
+            animation-play-state: paused;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .reviews-grid .review-bubble {
+            min-width: 280px;
+            max-width: 340px;
+        }
     </style>
 </head>
 <body class="bg-black text-gray-100">
 
     <!-- Navigation -->
-    <nav class="bg-black border-b border-gray-800 fixed w-full z-10">
+    <nav class="bg-black/95 backdrop-blur-sm border-b border-gray-800/50 fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20">
+            <div class="flex justify-between items-center h-20">
                 <div class="flex items-center">
-                    <span class="text-2xl font-bold tracking-widest uppercase">Koda <span class="gold-text">Creative</span></span>
+                    <a href="#">
+                        <img src="logo.png" alt="Koda Creative" class="h-14 w-auto">
+                    </a>
                 </div>
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#services" class="text-gray-400 hover:gold-text transition text-sm uppercase tracking-wider">Services</a>
-                    <a href="#portfolio" class="text-gray-400 hover:gold-text transition text-sm uppercase tracking-wider">Portfolio</a>
-                    <a href="#pricing" class="text-gray-400 hover:gold-text transition text-sm uppercase tracking-wider">Pricing</a>
-                    <a href="https://buy.stripe.com/test_9B67sLb8vguig8gaF33Je00" class="gold-bg text-black px-6 py-2 rounded-none font-bold hover:gold-hover transition uppercase tracking-widest text-sm">Start Project</a>
+                    <a href="#services" class="text-gray-400 hover:text-gold transition text-sm uppercase tracking-wider font-medium">Services</a>
+                    <a href="#pricing" class="text-gray-400 hover:text-gold transition text-sm uppercase tracking-wider font-medium">Pricing</a>
+                    <a href="#why-us" class="text-gray-400 hover:text-gold transition text-sm uppercase tracking-wider font-medium">Why Us</a>
+                    <a href="#contact" class="text-gray-400 hover:text-gold transition text-sm uppercase tracking-wider font-medium">Contact</a>
+                    <a href="#pricing" class="btn-gold px-7 py-2.5 rounded font-bold text-sm uppercase tracking-widest">Get Started</a>
                 </div>
+                <!-- Mobile menu button -->
+                <button id="mobileToggle" class="md:hidden text-gray-400 hover:text-white focus:outline-none" aria-label="Toggle menu">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="mobile-menu md:hidden bg-black border-t border-gray-800/50">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#services" class="block text-gray-400 hover:text-gold text-sm uppercase tracking-wider py-2">Services</a>
+                <a href="#pricing" class="block text-gray-400 hover:text-gold text-sm uppercase tracking-wider py-2">Pricing</a>
+                <a href="#why-us" class="block text-gray-400 hover:text-gold text-sm uppercase tracking-wider py-2">Why Us</a>
+                <a href="#contact" class="block text-gray-400 hover:text-gold text-sm uppercase tracking-wider py-2">Contact</a>
+                <a href="#pricing" class="block btn-gold text-center px-7 py-2.5 rounded font-bold text-sm uppercase tracking-widest mt-2">Get Started</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <div class="hero-bg h-screen flex items-center justify-center text-center px-4">
-        <div class="max-w-5xl">
-            <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 tracking-wide leading-tight">
-                Digital Excellence for <br/><span class="gold-text">Modern Brands.</span>
+    <section class="relative min-h-screen flex items-center justify-center text-center px-4 overflow-hidden">
+        <!-- Background gradient -->
+        <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+        <!-- Decorative gold accent -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/5 rounded-full blur-3xl"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto pt-20">
+            <div class="mb-8">
+                <span class="inline-block text-gold text-sm uppercase tracking-[0.3em] font-medium border border-gold/30 px-5 py-2 rounded-full">Web Design &bull; AI Solutions</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight">
+                Your Business<br>Deserves <span class="text-gold">Better</span>.
             </h1>
-            <p class="text-xl md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto font-light">
-                We craft high-performance digital experiences that elevate local businesses. No templates. Just results.
+            <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+                We build brand new, high-performance websites and AI-powered receptionists for businesses with no website or an outdated one. Professional results. Affordable pricing.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <a href="https://buy.stripe.com/test_9B67sLb8vguig8gaF33Je00" class="gold-bg text-black px-10 py-4 text-lg font-bold hover:gold-hover transition uppercase tracking-widest shadow-2xl">
-                    Begin Your Transformation
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#pricing" class="btn-gold px-10 py-4 text-base font-bold uppercase tracking-widest rounded">
+                    View Plans
                 </a>
-                <a href="#pricing" class="bg-transparent border border-gray-500 text-white px-10 py-4 text-lg font-light hover:border-white hover:text-white transition uppercase tracking-widest">
-                    View Pricing
+                <a href="#services" class="border border-gray-600 text-white px-10 py-4 text-base font-light hover:border-white transition uppercase tracking-widest rounded">
+                    Our Services
                 </a>
+            </div>
+
+            <!-- Trust indicators -->
+            <div class="mt-20 flex flex-wrap justify-center gap-x-12 gap-y-4 text-gray-500 text-sm uppercase tracking-wider">
+                <span>No Contracts</span>
+                <span class="text-gold/40">&bull;</span>
+                <span>$0 Down</span>
+                <span class="text-gold/40">&bull;</span>
+                <span>Cancel Anytime</span>
             </div>
         </div>
     </section>
 
-    <!-- The Problem Section -->
-    <section class="py-24 bg-black">
+    <!-- Review Marquee -->
+    <section class="py-12 bg-black overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 fade-up">
+            <div class="text-center mb-8">
+                <span class="text-gold text-sm uppercase tracking-[0.2em] font-medium">Trusted By Local Businesses</span>
+            </div>
+            <div class="reviews-marquee">
+                <div class="reviews-marquee-inner">
+                    <!-- Set 1 -->
+                    <div class="review-bubble">
+                        <div class="review-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="review-text mb-3">"Koda Creative built us a site in days. We've gotten more calls in the first week than the entire previous month."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="review-avatar bg-gold/20 text-gold">MR</div>
+                            <div>
+                                <p class="review-author">Marcus R.</p>
+                                <p class="text-gray-600 text-xs">Auto Detailing, Torrance</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-bubble">
+                        <div class="review-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="review-text mb-3">"The AI receptionist is a game changer. It books appointments while I'm working and never misses a call."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="review-avatar bg-emerald-500/20 text-emerald-400">SL</div>
+                            <div>
+                                <p class="review-author">Sandra L.</p>
+                                <p class="text-gray-600 text-xs">Hair Salon, Redondo Beach</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-bubble">
+                        <div class="review-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="review-text mb-3">"I had no website at all before Koda. Now customers find me on Google and my bookings are up 40%."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="review-avatar bg-blue-500/20 text-blue-400">JT</div>
+                            <div>
+                                <p class="review-author">Jason T.</p>
+                                <p class="text-gray-600 text-xs">Plumbing, Hawthorne</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-bubble">
+                        <div class="review-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="review-text mb-3">"$0 down was what got me. The website paid for itself the first month with new client leads. Incredible value."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="review-avatar bg-purple-500/20 text-purple-400">AD</div>
+                            <div>
+                                <p class="review-author">Ashley D.</p>
+                                <p class="text-gray-600 text-xs">Personal Trainer, Manhattan Beach</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-bubble">
+                        <div class="review-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="review-text mb-3">"Professional, fast, and affordable. Koda gave my restaurant a website that actually looks like us. Love it."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="review-avatar bg-rose-500/20 text-rose-400">KN</div>
+                            <div>
+                                <p class="review-author">Kevin N.</p>
+                                <p class="text-gray-600 text-xs">Restaurant, Inglewood</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-bubble">
+                        <div class="review-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="review-text mb-3">"The bundle deal saved me money and now I have both a website and an AI receptionist handling everything."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="review-avatar bg-amber-500/20 text-amber-400">RP</div>
+                            <div>
+                                <p class="review-author">Rachel P.</p>
+                                <p class="text-gray-600 text-xs">Law Office, Carson</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Set 2 (duplicate for seamless loop) -->
+                    <div class="review-bubble">
+                        <div class="review-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="review-text mb-3">"Koda Creative built us a site in days. We've gotten more calls in the first week than the entire previous month."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="review-avatar bg-gold/20 text-gold">MR</div>
+                            <div>
+                                <p class="review-author">Marcus R.</p>
+                                <p class="text-gray-600 text-xs">Auto Detailing, Torrance</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-bubble">
+                        <div class="review-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="review-text mb-3">"The AI receptionist is a game changer. It books appointments while I'm working and never misses a call."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="review-avatar bg-emerald-500/20 text-emerald-400">SL</div>
+                            <div>
+                                <p class="review-author">Sandra L.</p>
+                                <p class="text-gray-600 text-xs">Hair Salon, Redondo Beach</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-bubble">
+                        <div class="review-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="review-text mb-3">"I had no website at all before Koda. Now customers find me on Google and my bookings are up 40%."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="review-avatar bg-blue-500/20 text-blue-400">JT</div>
+                            <div>
+                                <p class="review-author">Jason T.</p>
+                                <p class="text-gray-600 text-xs">Plumbing, Hawthorne</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-bubble">
+                        <div class="review-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="review-text mb-3">"$0 down was what got me. The website paid for itself the first month with new client leads. Incredible value."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="review-avatar bg-purple-500/20 text-purple-400">AD</div>
+                            <div>
+                                <p class="review-author">Ashley D.</p>
+                                <p class="text-gray-600 text-xs">Personal Trainer, Manhattan Beach</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-bubble">
+                        <div class="review-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="review-text mb-3">"Professional, fast, and affordable. Koda gave my restaurant a website that actually looks like us. Love it."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="review-avatar bg-rose-500/20 text-rose-400">KN</div>
+                            <div>
+                                <p class="review-author">Kevin N.</p>
+                                <p class="text-gray-600 text-xs">Restaurant, Inglewood</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-bubble">
+                        <div class="review-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <p class="review-text mb-3">"The bundle deal saved me money and now I have both a website and an AI receptionist handling everything."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="review-avatar bg-amber-500/20 text-amber-400">RP</div>
+                            <div>
+                                <p class="review-author">Rachel P.</p>
+                                <p class="text-gray-600 text-xs">Law Office, Carson</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-black">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-3 gap-12">
-                <div class="p-10 bg-gray-900 border border-gray-800 hover:border-yellow-600 transition duration-500">
-                    <h3 class="text-2xl font-bold mb-4 text-white">Design</h3>
-                    <p class="text-gray-400 leading-relaxed">Minimalist aesthetics meet functional architecture. We build sites that command authority.</p>
+            <div class="text-center mb-16 fade-up">
+                <span class="text-gold text-sm uppercase tracking-[0.2em] font-medium">What We Offer</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">Our Services</h2>
+                <div class="w-16 h-0.5 bg-gold mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Service 1: Website -->
+                <div class="fade-up p-10 bg-gray-900/50 border border-gray-800 rounded-lg hover:border-gold/40 transition duration-500 group">
+                    <div class="w-14 h-14 bg-gold/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-gold/20 transition">
+                        <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">Brand New Website</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">A fully custom, professional website built from scratch. Mobile-responsive, fast-loading, and optimized for search engines. Includes hosting, SSL, and unlimited revisions.</p>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-center"><span class="text-gold mr-3">&#10003;</span> Custom 5+ page design</li>
+                        <li class="flex items-center"><span class="text-gold mr-3">&#10003;</span> Mobile responsive</li>
+                        <li class="flex items-center"><span class="text-gold mr-3">&#10003;</span> SEO optimized</li>
+                        <li class="flex items-center"><span class="text-gold mr-3">&#10003;</span> Secure hosting with SSL</li>
+                        <li class="flex items-center"><span class="text-gold mr-3">&#10003;</span> Unlimited content updates</li>
+                    </ul>
+                    <div class="mt-8">
+                        <span class="text-3xl font-bold text-white">$475</span>
+                        <span class="text-gray-500 text-sm">/mo</span>
+                    </div>
                 </div>
-                <div class="p-10 bg-gray-900 border border-gray-800 hover:border-yellow-600 transition duration-500">
-                    <h3 class="text-2xl font-bold mb-4 text-white">Performance</h3>
-                    <p class="text-gray-400 leading-relaxed">Speed is a feature. Our sites are engineered for sub-second load times and mobile perfection.</p>
+
+                <!-- Service 2: AI Receptionist -->
+                <div class="fade-up p-10 bg-gray-900/50 border border-gray-800 rounded-lg hover:border-gold/40 transition duration-500 group" style="transition-delay: 0.15s;">
+                    <div class="w-14 h-14 bg-gold/10 rounded-lg flex items-center justify-center mb-6 group-hover:bg-gold/20 transition">
+                        <svg class="w-7 h-7 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-white">AI Receptionist</h3>
+                    <p class="text-gray-400 leading-relaxed mb-6">An intelligent AI-powered receptionist that handles customer inquiries 24/7. Never miss a lead again. Answers questions, books appointments, and routes calls automatically.</p>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex items-center"><span class="text-gold mr-3">&#10003;</span> 24/7 availability</li>
+                        <li class="flex items-center"><span class="text-gold mr-3">&#10003;</span> Answers customer questions</li>
+                        <li class="flex items-center"><span class="text-gold mr-3">&#10003;</span> Books appointments</li>
+                        <li class="flex items-center"><span class="text-gold mr-3">&#10003;</span> Routes calls & messages</li>
+                        <li class="flex items-center"><span class="text-gold mr-3">&#10003;</span> Custom-trained for your business</li>
+                    </ul>
+                    <div class="mt-8">
+                        <span class="text-3xl font-bold text-white">$275</span>
+                        <span class="text-gray-500 text-sm">/mo</span>
+                    </div>
                 </div>
-                <div class="p-10 bg-gray-900 border border-gray-800 hover:border-yellow-600 transition duration-500">
-                    <h3 class="text-2xl font-bold mb-4 text-white">Growth</h3>
-                    <p class="text-gray-400 leading-relaxed">Integrated SEO and conversion optimization ensures your site isn't just seen—it sells.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Highlight -->
+    <section class="py-16 bg-gradient-to-b from-black to-gray-900">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 fade-up">
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="review-bubble border-gold/25">
+                    <div class="review-stars mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text mb-4 text-base">"We were paying $3,000+ for a basic site with another agency. Koda gave us a better website for a fraction of the cost, and the AI receptionist means we never miss a lead. Best decision we made all year."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="review-avatar bg-cyan-500/20 text-cyan-400">DM</div>
+                        <div>
+                            <p class="review-author">Daniel M.</p>
+                            <p class="text-gray-600 text-xs">HVAC Company, Gardena</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-bubble border-gold/25">
+                    <div class="review-stars mb-3">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text mb-4 text-base">"I was skeptical about the AI receptionist but it literally handles everything while I'm on jobs. Customers love it, and I went from maybe 5 calls a week to over 20. No contracts, no BS. Just results."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="review-avatar bg-orange-500/20 text-orange-400">TW</div>
+                        <div>
+                            <p class="review-author">Tony W.</p>
+                            <p class="text-gray-600 text-xs">Electrician, Lomita</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Pricing Section -->
-    <section id="pricing" class="py-24 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl font-bold mb-16 text-white">The Partnership</h2>
-            
-            <div class="max-w-lg mx-auto bg-black border border-gray-800 rounded-none overflow-hidden shadow-2xl transform hover:-translate-y-2 transition duration-500 relative">
-                <div class="absolute top-0 w-full h-1 gold-bg"></div>
-                <div class="p-12">
-                    <h3 class="text-xl font-bold text-gray-400 uppercase tracking-widest mb-2">Full Service</h3>
-                    <div class="mt-6 flex justify-center items-baseline">
-                        <span class="text-6xl font-serif text-white">$475</span>
-                        <span class="ml-2 text-xl font-light text-gray-500">/mo</span>
-                    </div>
-                    <p class="mt-4 text-gray-500 text-sm tracking-wide uppercase">$0 Down Payment</p>
+    <section id="pricing" class="py-24 bg-gradient-to-b from-gray-900 to-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-up">
+                <span class="text-gold text-sm uppercase tracking-[0.2em] font-medium">Simple Pricing</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">Choose Your Plan</h2>
+                <p class="text-gray-400 mt-4 text-lg font-light">No contracts. No down payment. Cancel anytime.</p>
+                <div class="w-16 h-0.5 bg-gold mx-auto mt-6"></div>
+            </div>
 
-                    <ul class="mt-10 space-y-6 text-left text-gray-300">
-                        <li class="flex items-center"><span class="gold-text mr-4">▪</span> Bespoke 5-Page Website</li>
-                        <li class="flex items-center"><span class="gold-text mr-4">▪</span> Mobile Responsive Architecture</li>
-                        <li class="flex items-center"><span class="gold-text mr-4">▪</span> Premium Secure Hosting (SSL)</li>
-                        <li class="flex items-center"><span class="gold-text mr-4">▪</span> Unlimited Content Revisions</li>
-                        <li class="flex items-center"><span class="gold-text mr-4">▪</span> SEO & Analytics Dashboard</li>
-                        <li class="flex items-center"><span class="gold-text mr-4">▪</span> Dedicated Project Manager</li>
-                    </ul>
-                    <a href="https://buy.stripe.com/test_9B67sLb8vguig8gaF33Je00" class="mt-12 block w-full gold-bg text-black py-4 font-bold text-sm hover:gold-hover transition uppercase tracking-widest">Start Partnership</a>
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
+
+                <!-- Plan 1: AI Receptionist -->
+                <div class="pricing-card fade-up bg-gray-900/80 border border-gray-800 rounded-lg overflow-hidden">
+                    <div class="p-10">
+                        <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">AI Receptionist</h3>
+                        <p class="text-gray-500 text-sm mb-6">Never miss a customer</p>
+                        <div class="flex items-baseline">
+                            <span class="text-5xl font-display font-bold text-white">$275</span>
+                            <span class="ml-2 text-gray-500">/mo</span>
+                        </div>
+                        <p class="mt-2 text-gold text-xs uppercase tracking-wider font-medium">$0 Down Payment</p>
+
+                        <ul class="mt-8 space-y-4 text-gray-300 text-sm">
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                24/7 AI-powered receptionist
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Answers customer questions
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Appointment booking
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Call & message routing
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Custom-trained for your business
+                            </li>
+                        </ul>
+
+                        <a href="mailto:TristanSouthBayWeb@gmail.com?subject=AI%20Receptionist%20-%20$275/mo" class="mt-10 block w-full text-center border-2 border-gold text-gold py-3.5 rounded font-bold text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Plan 2: Bundle (Featured) -->
+                <div class="pricing-card pricing-featured fade-up bg-gray-900 rounded-lg overflow-hidden relative" style="transition-delay: 0.1s;">
+                    <div class="bg-gold text-black text-center py-2.5 text-xs font-bold uppercase tracking-widest">
+                        Best Value &mdash; Save $50/mo
+                    </div>
+                    <div class="p-10">
+                        <h3 class="text-sm font-bold text-gold uppercase tracking-widest mb-1">Website + AI Receptionist</h3>
+                        <p class="text-gray-500 text-sm mb-6">The complete package</p>
+                        <div class="flex items-baseline">
+                            <span class="text-5xl font-display font-bold text-white">$700</span>
+                            <span class="ml-2 text-gray-500">/mo</span>
+                        </div>
+                        <p class="mt-2 text-gold text-xs uppercase tracking-wider font-medium">$0 Down Payment</p>
+
+                        <ul class="mt-8 space-y-4 text-gray-300 text-sm">
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Everything in Website plan
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Everything in AI Receptionist plan
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                AI receptionist integrated into site
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Priority support
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                $50/mo bundle savings
+                            </li>
+                        </ul>
+
+                        <a href="mailto:TristanSouthBayWeb@gmail.com?subject=Website%20%2B%20AI%20Bundle%20-%20$700/mo" class="mt-10 block w-full text-center btn-gold py-3.5 rounded font-bold text-sm uppercase tracking-widest">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Plan 3: Website -->
+                <div class="pricing-card fade-up bg-gray-900/80 border border-gray-800 rounded-lg overflow-hidden" style="transition-delay: 0.2s;">
+                    <div class="p-10">
+                        <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">Brand New Website</h3>
+                        <p class="text-gray-500 text-sm mb-6">Built from scratch for you</p>
+                        <div class="flex items-baseline">
+                            <span class="text-5xl font-display font-bold text-white">$475</span>
+                            <span class="ml-2 text-gray-500">/mo</span>
+                        </div>
+                        <p class="mt-2 text-gold text-xs uppercase tracking-wider font-medium">$0 Down Payment</p>
+
+                        <ul class="mt-8 space-y-4 text-gray-300 text-sm">
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Custom 5+ page website
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Mobile responsive design
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                SEO & analytics setup
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Secure hosting with SSL
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-5 h-5 text-gold mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                                Unlimited content updates
+                            </li>
+                        </ul>
+
+                        <a href="mailto:TristanSouthBayWeb@gmail.com?subject=Brand%20New%20Website%20-%20$475/mo" class="mt-10 block w-full text-center border-2 border-gold text-gold py-3.5 rounded font-bold text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section id="why-us" class="py-24 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-up">
+                <span class="text-gold text-sm uppercase tracking-[0.2em] font-medium">The Koda Difference</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">Why Choose Us</h2>
+                <div class="w-16 h-0.5 bg-gold mx-auto mt-6"></div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 fade-up">
+                <div class="text-center p-8">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-5">
+                        <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">$0 Down</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">No upfront costs. Pay monthly and cancel anytime. Zero risk to get started.</p>
+                </div>
+
+                <div class="text-center p-8">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-5">
+                        <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Fast Delivery</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Your new website or AI receptionist is up and running quickly so you can start winning customers.</p>
+                </div>
+
+                <div class="text-center p-8">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-5">
+                        <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">No Contracts</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Month-to-month service. We earn your business every single month. Cancel whenever you want.</p>
+                </div>
+
+                <div class="text-center p-8">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-5">
+                        <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Ongoing Support</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Unlimited revisions and updates included. We handle the tech so you can focus on your business.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Problem Section -->
+    <section class="py-24 bg-gradient-to-b from-black to-gray-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-up">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">
+                Is Your Business <span class="text-gold">Invisible</span> Online?
+            </h2>
+            <p class="text-gray-400 text-lg md:text-xl font-light leading-relaxed max-w-3xl mx-auto mb-8">
+                Every day without a professional website or a way to capture leads, you're losing customers to competitors who do. We make it affordable to change that.
+            </p>
+            <div class="grid sm:grid-cols-3 gap-8 mt-12">
+                <div class="p-6 border border-gray-800 rounded-lg">
+                    <div class="stat-number text-4xl font-display font-bold mb-2">97%</div>
+                    <p class="text-gray-500 text-sm">of consumers search online for local businesses</p>
+                </div>
+                <div class="p-6 border border-gray-800 rounded-lg">
+                    <div class="stat-number text-4xl font-display font-bold mb-2">75%</div>
+                    <p class="text-gray-500 text-sm">judge credibility based on website design</p>
+                </div>
+                <div class="p-6 border border-gray-800 rounded-lg">
+                    <div class="stat-number text-4xl font-display font-bold mb-2">50%</div>
+                    <p class="text-gray-500 text-sm">of small businesses still have no website</p>
+                </div>
+            </div>
+            <a href="#pricing" class="inline-block mt-12 btn-gold px-10 py-4 text-base font-bold uppercase tracking-widest rounded">
+                Don't Get Left Behind
+            </a>
+        </div>
+    </section>
+
+    <!-- Final Review Strip -->
+    <section class="py-14 bg-black border-t border-gray-800/30">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 fade-up">
+            <div class="grid sm:grid-cols-3 gap-6">
+                <div class="review-bubble text-center">
+                    <div class="review-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text mb-3">"Went from zero online presence to a full website in under a week. Koda makes it easy."</p>
+                    <div class="flex items-center justify-center gap-3">
+                        <div class="review-avatar bg-teal-500/20 text-teal-400">LH</div>
+                        <div class="text-left">
+                            <p class="review-author">Lisa H.</p>
+                            <p class="text-gray-600 text-xs">Bakery, El Segundo</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-bubble text-center">
+                    <div class="review-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text mb-3">"The monthly pricing works perfect for my budget. No surprise fees, no contracts. Highly recommend."</p>
+                    <div class="flex items-center justify-center gap-3">
+                        <div class="review-avatar bg-indigo-500/20 text-indigo-400">CP</div>
+                        <div class="text-left">
+                            <p class="review-author">Carlos P.</p>
+                            <p class="text-gray-600 text-xs">Landscaping, Lawndale</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="review-bubble text-center">
+                    <div class="review-stars mb-2">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <p class="review-text mb-3">"Our AI receptionist converted 12 new clients in the first month alone. It basically runs itself."</p>
+                    <div class="flex items-center justify-center gap-3">
+                        <div class="review-avatar bg-pink-500/20 text-pink-400">NJ</div>
+                        <div class="text-left">
+                            <p class="review-author">Nina J.</p>
+                            <p class="text-gray-600 text-xs">Med Spa, Hermosa Beach</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-24 bg-black border-t border-gray-900">
-        <div class="max-w-3xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-8 text-white">Elevate Your Business</h2>
-            <div class="bg-gray-900 p-10 border border-gray-800">
-                <p class="text-lg mb-2 text-gray-400 uppercase tracking-widest text-xs">Direct Contact</p>
-                <p class="text-2xl mb-8 text-white font-serif">TristanSouthBayWeb@gmail.com</p>
-                <a href="mailto:TristanSouthBayWeb@gmail.com" class="inline-block border border-white text-white px-10 py-3 hover:bg-white hover:text-black transition uppercase tracking-widest text-sm font-bold">Inquire Now</a>
+    <section id="contact" class="py-24 bg-black">
+        <div class="max-w-3xl mx-auto px-4 text-center fade-up">
+            <span class="text-gold text-sm uppercase tracking-[0.2em] font-medium">Get In Touch</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-white mt-4 mb-12">Ready to Get Started?</h2>
+
+            <div class="bg-gray-900/50 border border-gray-800 rounded-lg p-10 md:p-14">
+                <p class="text-gray-400 text-lg font-light mb-8">
+                    Reach out today and let's talk about what your business needs. No pressure, no obligations&mdash;just a conversation about how we can help.
+                </p>
+                <p class="text-2xl md:text-3xl text-white font-display mb-8">TristanSouthBayWeb@gmail.com</p>
+                <a href="mailto:TristanSouthBayWeb@gmail.com?subject=I'm%20Interested%20in%20Koda%20Creative%20Services" class="inline-block btn-gold px-10 py-4 text-sm font-bold uppercase tracking-widest rounded">
+                    Send an Email
+                </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black text-gray-600 py-10 text-center border-t border-gray-900 text-xs tracking-widest uppercase">
-        <p>&copy; 2026 Koda Creative. Los Angeles.</p>
+    <footer class="bg-black border-t border-gray-800/50 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center">
+                    <img src="logo.png" alt="Koda Creative" class="h-10 w-auto">
+                </div>
+                <div class="flex flex-wrap justify-center gap-8 text-sm">
+                    <a href="#services" class="text-gray-500 hover:text-gold transition">Services</a>
+                    <a href="#pricing" class="text-gray-500 hover:text-gold transition">Pricing</a>
+                    <a href="#why-us" class="text-gray-500 hover:text-gold transition">Why Us</a>
+                    <a href="#contact" class="text-gray-500 hover:text-gold transition">Contact</a>
+                </div>
+                <p class="text-gray-600 text-xs tracking-wider">&copy; 2026 Koda Creative. Los Angeles.</p>
+            </div>
+        </div>
     </footer>
+
+    <!-- Scroll animation script -->
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Fade-up on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
 
 </body>
 </html>
