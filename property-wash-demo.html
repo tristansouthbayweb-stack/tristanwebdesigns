@@ -3,342 +3,412 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property Wash | Premium Pressure Washing | Palos Verdes & South Bay</title>
-    <meta name="description" content="Property Wash - #1 pressure washing company in Palos Verdes and South Bay. Specializing in red tile shingle roofs using boom lift technology. 73 five-star Google reviews. 24/7 service.">
+    <title>Property Wash | Professional Pressure Washing | Manhattan Beach & South Bay</title>
+    <meta name="description" content="Property Wash - Top-rated pressure washing in Manhattan Beach & South Bay. Specializing in drone washing, red tile roof sealing, residential & commercial cleaning.">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         brand: {
-                            blue: '#0d47a1',
-                            'blue-light': '#1976d2',
-                            green: '#2e7d32',
-                            'green-light': '#4caf50',
+                            blue: '#1e40af',
+                            'blue-light': '#3b82f6',
+                            'blue-dark': '#1e3a8a',
+                            green: '#16a34a',
+                            'green-light': '#22c55e',
                         }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Playfair Display', 'serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .hero-bg {
-            background: linear-gradient(135deg, #0d47a1 0%, #1976d2 50%, #4caf50 100%);
+        .hero-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #166534 100%);
         }
         .btn-primary {
-            background: linear-gradient(135deg, #2e7d32 0%, #4caf50 100%);
-            color: #fff;
+            background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
             transition: all 0.3s ease;
         }
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(46, 125, 50, 0.3);
+            box-shadow: 0 10px 30px rgba(22, 163, 74, 0.3);
         }
         .btn-secondary {
             background: white;
-            color: #0d47a1;
+            color: #1e40af;
             transition: all 0.3s ease;
         }
         .btn-secondary:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
         }
-        .feature-card {
+        .service-card {
             transition: all 0.3s ease;
         }
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+        }
+        .feature-icon {
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="font-sans text-gray-800">
 
     <!-- Navigation -->
-    <nav class="bg-white shadow-md fixed w-full z-50">
+    <nav class="bg-white shadow-lg fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex items-center">
-                    <div class="text-2xl font-bold text-brand-blue">
-                        Property<span class="text-brand-green">Wash</span>
+                <a href="#" class="flex items-center gap-2">
+                    <div class="text-2xl font-display font-bold">
+                        <span class="text-brand-blue">Property</span><span class="text-brand-green">Wash</span><span class="text-gray-500 text-lg">.com</span>
                     </div>
+                </a>
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#services" class="text-gray-700 hover:text-brand-blue font-medium transition">Services</a>
+                    <a href="#drone" class="text-gray-700 hover:text-brand-blue font-medium transition">Drone Washing</a>
+                    <a href="#why-us" class="text-gray-700 hover:text-brand-blue font-medium transition">Why Us</a>
+                    <a href="#areas" class="text-gray-700 hover:text-brand-blue font-medium transition">Areas Served</a>
+                    <a href="#contact" class="btn-primary text-white px-6 py-3 rounded-lg font-semibold">Get Free Quote</a>
                 </div>
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#services" class="text-gray-700 hover:text-brand-blue transition font-medium">Services</a>
-                    <a href="#why-us" class="text-gray-700 hover:text-brand-blue transition font-medium">Why Us</a>
-                    <a href="#reviews" class="text-gray-700 hover:text-brand-blue transition font-medium">Reviews</a>
-                    <a href="#contact" class="btn-primary px-6 py-3 rounded-lg font-bold">Get Free Quote</a>
-                </div>
-                <button id="mobileToggle" class="md:hidden text-gray-700">
+                <button id="mobile-menu-btn" class="lg:hidden text-gray-700">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                     </svg>
                 </button>
             </div>
         </div>
-        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t">
             <div class="px-4 py-4 space-y-3">
                 <a href="#services" class="block text-gray-700 py-2">Services</a>
+                <a href="#drone" class="block text-gray-700 py-2">Drone Washing</a>
                 <a href="#why-us" class="block text-gray-700 py-2">Why Us</a>
-                <a href="#reviews" class="block text-gray-700 py-2">Reviews</a>
-                <a href="#contact" class="block btn-primary text-center py-3 rounded-lg font-bold">Get Free Quote</a>
+                <a href="#areas" class="block text-gray-700 py-2">Areas Served</a>
+                <a href="#contact" class="block btn-primary text-white text-center py-3 rounded-lg font-semibold">Get Free Quote</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-bg text-white pt-32 pb-20">
+    <section class="hero-gradient text-white pt-32 pb-20 lg:pt-40 lg:pb-32">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-4xl mx-auto">
+            <div class="max-w-3xl">
                 <div class="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-                    <span class="text-green-300 font-semibold">#1 Rated in Palos Verdes & South Bay</span>
+                    <span class="text-green-300 font-semibold text-sm">#1 Rated in Manhattan Beach & South Bay</span>
                 </div>
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                    Property Wash<br>
-                    <span class="text-green-300">Without The Damage</span>
+                <h1 class="text-4xl lg:text-6xl font-display font-bold mb-6 leading-tight">
+                    Top-of-the-Line<br>Pressure Washing
                 </h1>
-                <p class="text-xl md:text-2xl mb-8 text-blue-100">
-                    Specializing in red tile shingle roofs. We use boom lift bucket trucks—<strong>we never walk on your roof.</strong>
+                <p class="text-xl text-blue-100 mb-8 leading-relaxed">
+                    Restoring beauty and extending the life of your property. From drone washing to red tile roof sealing, we bring cutting-edge technology to every job.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#contact" class="btn-primary px-8 py-4 rounded-xl text-lg font-bold">
-                        Get Your Free Quote
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" class="btn-primary text-white px-8 py-4 rounded-xl text-lg font-semibold text-center">
+                        Get Free Quote
                     </a>
-                    <a href="tel:3107559439" class="btn-secondary px-8 py-4 rounded-xl text-lg font-bold">
-                        Call (310) 755-9439
+                    <a href="tel:3107559439" class="btn-secondary px-8 py-4 rounded-xl text-lg font-semibold text-center">
+                        (310) 755-9439
                     </a>
                 </div>
-                <div class="mt-12 flex flex-wrap justify-center gap-8 text-sm">
+                <div class="mt-10 flex flex-wrap gap-6 text-sm text-blue-100">
                     <div class="flex items-center gap-2">
-                        <svg class="w-5 h-5 text-green-300" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                        </svg>
-                        <span>73 Five-Star Reviews</span>
+                        <svg class="w-5 h-5 text-green-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        Licensed & Insured
                     </div>
                     <div class="flex items-center gap-2">
-                        <svg class="w-5 h-5 text-green-300" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>24/7 Service Available</span>
+                        <svg class="w-5 h-5 text-green-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        73 Five-Star Reviews
                     </div>
                     <div class="flex items-center gap-2">
-                        <svg class="w-5 h-5 text-green-300" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-                        </svg>
-                        <span>Palos Verdes & South Bay</span>
+                        <svg class="w-5 h-5 text-green-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                        Serving South Bay
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- The Problem/Solution Section -->
-    <section class="py-20 bg-white">
+    <!-- Drone Section -->
+    <section id="drone" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div>
-                    <div class="inline-block bg-red-100 text-red-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                        The Problem
+                    <div class="inline-block bg-blue-100 text-brand-blue px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                        Advanced Technology
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                        Walking on Red Tile Roofs = <span class="text-red-600">Broken Tiles</span>
+                    <h2 class="text-3xl lg:text-5xl font-display font-bold text-gray-900 mb-6">
+                        What is Drone<br>Pressure Washing?
                     </h2>
-                    <p class="text-gray-600 text-lg mb-6">
-                        Traditional pressure washing companies walk all over your red tile shingle roof, causing extensive damage. Broken tiles lead to leaks, expensive repairs, and compromised roof integrity.
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Drone pressure washing is the future of exterior cleaning. We combine high-tech drones with high-pressure water jets to reach the most challenging and delicate areas without scaffolding or ladders.
                     </p>
-                    <ul class="space-y-3 text-gray-600">
+                    <p class="text-gray-600 mb-8">
+                        This service is perfect for high buildings, complex architecture, and any area where traditional pressure washing can't reach or might pose a safety risk.
+                    </p>
+                    <ul class="space-y-4 mb-8">
                         <li class="flex items-center gap-3">
-                            <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                            </svg>
-                            Cracked and broken tiles
+                            <div class="w-8 h-8 bg-brand-green rounded-full flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            </div>
+                            <span class="text-gray-700">No scaffolding or ladders needed</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                            </svg>
-                            Expensive repair costs
+                            <div class="w-8 h-8 bg-brand-green rounded-full flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            </div>
+                            <span class="text-gray-700">Perfect for high-rise buildings</span>
                         </li>
                         <li class="flex items-center gap-3">
-                            <svg class="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                            </svg>
-                            Water damage and leaks
+                            <div class="w-8 h-8 bg-brand-green rounded-full flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                            </div>
+                            <span class="text-gray-700">Enhanced safety for complex architecture</span>
                         </li>
                     </ul>
+                    <a href="#contact" class="btn-primary text-white px-8 py-4 rounded-xl font-semibold inline-block">
+                        Schedule Drone Washing
+                    </a>
                 </div>
-                <div>
-                    <div class="inline-block bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-semibold mb-4">
-                        Our Solution
+                <div class="bg-gradient-to-br from-brand-blue to-brand-green rounded-3xl p-12 text-white text-center">
+                    <div class="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                        </svg>
                     </div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                        Boom Lift Technology = <span class="text-brand-green">Zero Damage</span>
-                    </h2>
-                    <p class="text-gray-600 text-lg mb-6">
-                        We own boom lift bucket trucks that lift our technicians OVER your roof. We never step foot on your red tile shingles, ensuring zero breakage and a pristine clean.
-                    </p>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-center gap-3">
-                            <svg class="w-6 h-6 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                            </svg>
-                            No walking on your roof, ever
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <svg class="w-6 h-6 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                            </svg>
-                            Professional boom lift equipment
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <svg class="w-6 h-6 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                            </svg>
-                            Protected roof warranty
-                        </li>
-                    </ul>
+                    <h3 class="text-2xl font-bold mb-4">The Future of Cleaning</h3>
+                    <p class="text-blue-100">Experience the next generation of pressure washing with our state-of-the-art drone technology.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-20 bg-gray-100">
+    <section id="services" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <span class="text-brand-blue font-semibold uppercase tracking-wider">Our Services</span>
-                <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mt-4">Complete Exterior Cleaning</h2>
+                <h2 class="text-3xl lg:text-5xl font-display font-bold text-gray-900 mt-4">Residential & Commercial</h2>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Comprehensive pressure washing solutions tailored to your property's unique needs.</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="feature-card bg-white rounded-2xl p-8 shadow-lg">
-                    <div class="w-16 h-16 bg-brand-blue/10 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                        </svg>
+
+            <!-- Residential Services -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+                    <div class="w-10 h-10 bg-brand-blue rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Roof Washing</h3>
-                    <p class="text-gray-600 mb-4">Specializing in red tile shingle roofs. Our boom lift technology ensures zero breakage while delivering a deep clean.</p>
-                    <span class="text-brand-blue font-semibold">Our Specialty →</span>
+                    Residential Services
+                </h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="service-card bg-gray-50 rounded-2xl p-8">
+                        <div class="w-14 h-14 bg-brand-blue/10 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-7 h-7 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">House Washing</h4>
+                        <p class="text-gray-600">Pristine exterior cleaning that tackles dirt and mildew while preserving your home's integrity.</p>
+                    </div>
+                    <div class="service-card bg-gray-50 rounded-2xl p-8 border-2 border-brand-green">
+                        <div class="inline-block bg-brand-green text-white text-xs font-bold px-3 py-1 rounded-full mb-4">Popular</div>
+                        <div class="w-14 h-14 bg-brand-green/10 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-7 h-7 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Red Tile Roof Sealing</h4>
+                        <p class="text-gray-600">Protect your Spanish-style roof from salt air, UV damage, and stains with professional sealing.</p>
+                    </div>
+                    <div class="service-card bg-gray-50 rounded-2xl p-8">
+                        <div class="w-14 h-14 bg-brand-blue/10 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-7 h-7 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Driveway Washing</h4>
+                        <p class="text-gray-600">Advanced techniques lift the toughest stains, instantly boosting your property's curb appeal.</p>
+                    </div>
+                    <div class="service-card bg-gray-50 rounded-2xl p-8">
+                        <div class="w-14 h-14 bg-brand-blue/10 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-7 h-7 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Window Cleaning</h4>
+                        <p class="text-gray-600">Crystal-clear views with streak-free finishes that elevate your property's aesthetic.</p>
+                    </div>
+                    <div class="service-card bg-gray-50 rounded-2xl p-8">
+                        <div class="w-14 h-14 bg-brand-blue/10 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-7 h-7 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Patio Cleaning</h4>
+                        <p class="text-gray-600">Enjoy a spotless outdoor space perfect for relaxation and entertainment.</p>
+                    </div>
+                    <div class="service-card bg-gray-50 rounded-2xl p-8">
+                        <div class="w-14 h-14 bg-brand-blue/10 rounded-xl flex items-center justify-center mb-6">
+                            <svg class="w-7 h-7 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                        </div>
+                        <h4 class="text-xl font-bold text-gray-900 mb-3">Ash Removal</h4>
+                        <p class="text-gray-600">Specialized removal of harmful ash residues from wildfires, fire pits, and stoves.</p>
+                    </div>
                 </div>
-                <div class="feature-card bg-white rounded-2xl p-8 shadow-lg">
-                    <div class="w-16 h-16 bg-brand-blue/10 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                        </svg>
+            </div>
+
+            <!-- Commercial Services -->
+            <div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+                    <div class="w-10 h-10 bg-brand-green rounded-lg flex items-center justify-center">
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Building Washing</h3>
-                    <p class="text-gray-600 mb-4">Advanced drone technology for hard-to-reach areas. Safe, efficient cleaning of multi-story buildings and structures.</p>
-                    <span class="text-brand-blue font-semibold">Drone Technology →</span>
-                </div>
-                <div class="feature-card bg-white rounded-2xl p-8 shadow-lg">
-                    <div class="w-16 h-16 bg-brand-blue/10 rounded-xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-brand-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                        </svg>
+                    Commercial Services
+                </h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="service-card bg-gray-50 rounded-2xl p-6 text-center">
+                        <div class="w-14 h-14 bg-brand-green/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-7 h-7 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">Building Washing</h4>
+                        <p class="text-gray-600 text-sm">Eliminate pollutants and urban grime from commercial structures.</p>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Pressure Washing</h3>
-                    <p class="text-gray-600 mb-4">Driveways, walkways, patios, and more. Professional-grade equipment for a spotless finish every time.</p>
-                    <span class="text-brand-blue font-semibold">Full Service →</span>
+                    <div class="service-card bg-gray-50 rounded-2xl p-6 text-center">
+                        <div class="w-14 h-14 bg-brand-green/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-7 h-7 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">Storefront Washing</h4>
+                        <p class="text-gray-600 text-sm">Make your business's first impression count with a clean facade.</p>
+                    </div>
+                    <div class="service-card bg-gray-50 rounded-2xl p-6 text-center">
+                        <div class="w-14 h-14 bg-brand-green/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-7 h-7 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">Parking Lot Striping</h4>
+                        <p class="text-gray-600 text-sm">Clear, well-defined lines for traffic flow and space management.</p>
+                    </div>
+                    <div class="service-card bg-gray-50 rounded-2xl p-6 text-center">
+                        <div class="w-14 h-14 bg-brand-green/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-7 h-7 text-brand-green" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/></svg>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900 mb-2">Parking Garage Cleaning</h4>
+                        <p class="text-gray-600 text-sm">Safe, pleasant environments for vehicle owners.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Why Us Section -->
-    <section id="why-us" class="py-20 bg-white">
+    <!-- Why Choose Us -->
+    <section id="why-us" class="py-20 bg-brand-blue text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="text-brand-blue font-semibold uppercase tracking-wider">Why Choose Us</span>
-                <h2 class="text-3xl md:text-5xl font-bold text-gray-900 mt-4">The Property Wash Difference</h2>
+                <span class="text-green-300 font-semibold uppercase tracking-wider">Why Property Wash</span>
+                <h2 class="text-3xl lg:text-5xl font-display font-bold mt-4">The Professional Difference</h2>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-brand-blue rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                        </svg>
+                <div class="feature-card text-center">
+                    <div class="feature-icon w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Zero Roof Damage</h3>
-                    <p class="text-gray-600">Boom lift technology means we never walk on your tiles</p>
+                    <h3 class="text-xl font-bold mb-3">Expert Knowledge</h3>
+                    <p class="text-blue-100">We understand pressure settings, cleaning agents, and techniques that protect your investment.</p>
                 </div>
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-brand-blue rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
-                        </svg>
+                <div class="feature-card text-center">
+                    <div class="feature-icon w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">73 Five-Star Reviews</h3>
-                    <p class="text-gray-600">Perfect rating from satisfied customers</p>
+                    <h3 class="text-xl font-bold mb-3">Cutting-Edge Equipment</h3>
+                    <p class="text-blue-100">Industry-leading tools including drone technology for hard-to-reach areas.</p>
                 </div>
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-brand-blue rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
+                <div class="feature-card text-center">
+                    <div class="feature-icon w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">24/7 Availability</h3>
-                    <p class="text-gray-600">Emergency services available around the clock</p>
+                    <h3 class="text-xl font-bold mb-3">Coastal Expertise</h3>
+                    <p class="text-blue-100">We understand the unique challenges of coastal living in Manhattan Beach.</p>
                 </div>
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-brand-blue rounded-full flex items-center justify-center mx-auto mb-6">
-                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-                        </svg>
+                <div class="feature-card text-center">
+                    <div class="feature-icon w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-10 h-10 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">Local Experts</h3>
-                    <p class="text-gray-600">#1 in Palos Verdes & South Bay</p>
+                    <h3 class="text-xl font-bold mb-3">Time & Effort Saved</h3>
+                    <p class="text-blue-100">Professional results that surpass DIY, without the hassle.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Reviews Section -->
-    <section id="reviews" class="py-20 bg-brand-blue text-white">
+    <!-- Areas Served -->
+    <section id="areas" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-green-300 font-semibold uppercase tracking-wider">Customer Reviews</span>
-                <h2 class="text-3xl md:text-5xl font-bold mt-4">73 Five-Star Google Reviews</h2>
-                <div class="flex justify-center items-center gap-2 mt-4">
-                    <div class="flex text-green-300">
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    </div>
-                    <span class="text-2xl font-bold">5.0</span>
+            <div class="text-center mb-12">
+                <span class="text-brand-blue font-semibold uppercase tracking-wider">Service Areas</span>
+                <h2 class="text-3xl lg:text-5xl font-display font-bold text-gray-900 mt-4">Serving the South Bay</h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+                    <div class="font-semibold text-gray-900">Manhattan Beach</div>
+                </div>
+                <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+                    <div class="font-semibold text-gray-900">Hermosa Beach</div>
+                </div>
+                <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+                    <div class="font-semibold text-gray-900">Redondo Beach</div>
+                </div>
+                <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+                    <div class="font-semibold text-gray-900">Torrance</div>
+                </div>
+                <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+                    <div class="font-semibold text-gray-900">Palos Verdes</div>
+                </div>
+                <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+                    <div class="font-semibold text-gray-900">El Segundo</div>
+                </div>
+                <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+                    <div class="font-semibold text-gray-900">Rancho PV</div>
+                </div>
+                <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+                    <div class="font-semibold text-gray-900">Rolling Hills</div>
+                </div>
+                <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+                    <div class="font-semibold text-gray-900">Lomita</div>
+                </div>
+                <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+                    <div class="font-semibold text-gray-900">San Pedro</div>
+                </div>
+                <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+                    <div class="font-semibold text-gray-900">Carson</div>
+                </div>
+                <div class="bg-white rounded-xl p-4 text-center shadow-sm">
+                    <div class="font-semibold text-gray-900">Gardena</div>
                 </div>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
-                    <div class="flex text-green-300 mb-4">
-                        ★★★★★
-                    </div>
-                    <p class="text-lg mb-6">"They cleaned our red tile roof without breaking a single tile. Other companies wanted to walk all over it. These guys used a boom lift and did an amazing job!"</p>
-                    <div class="font-semibold">- Michael R.</div>
-                    <div class="text-blue-200 text-sm">Palos Verdes Estates</div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-brand-blue font-semibold uppercase tracking-wider">FAQ</span>
+                <h2 class="text-3xl lg:text-4xl font-display font-bold text-gray-900 mt-4">Questions Answered</h2>
+            </div>
+            <div class="space-y-6">
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Is that black stuff on my roof algae or mold?</h3>
+                    <p class="text-gray-600">No, it's often algae or mildew. Our roof cleaning service specifically targets these organisms, ensuring your roof is not just clean but also free from potential damage. We use environmentally-friendly cleaning agents and specialized techniques to effectively remove algae and mildew.</p>
                 </div>
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
-                    <div class="flex text-green-300 mb-4">
-                        ★★★★★
-                    </div>
-                    <p class="text-lg mb-6">"Best pressure washing company in the South Bay. Professional, on time, and my roof looks brand new. The drone technology for building washing is impressive!"</p>
-                    <div class="font-semibold">- Jennifer K.</div>
-                    <div class="text-blue-200 text-sm">Rancho Palos Verdes</div>
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Do you offer commercial pressure washing?</h3>
+                    <p class="text-gray-600">Absolutely. We offer comprehensive pressure washing services for commercial properties, ensuring they are pristine and presentable. Our skilled professionals are experienced in handling large-scale cleaning projects for commercial buildings, storefronts, and industrial facilities.</p>
                 </div>
-                <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8">
-                    <div class="flex text-green-300 mb-4">
-                        ★★★★★
-                    </div>
-                    <p class="text-lg mb-6">"Called them at 8 PM for an emergency and they came out the same night. 24/7 service is no joke. Highly recommend for anyone in Palos Verdes!"</p>
-                    <div class="font-semibold">- David S.</div>
-                    <div class="text-blue-200 text-sm">Rolling Hills</div>
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Why hire a professional instead of DIY?</h3>
+                    <p class="text-gray-600">The difference is in the details. While a DIY pressure washer may seem cost-effective, our professional services provide numerous advantages. Our team has extensive knowledge of pressure settings, cleaning agents, and techniques that protect your investment while providing a deeper clean.</p>
                 </div>
             </div>
         </div>
@@ -347,30 +417,24 @@
     <!-- CTA Section -->
     <section id="contact" class="py-20 bg-gray-900 text-white">
         <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold mb-6">Ready for a Cleaner Property?</h2>
-            <p class="text-xl text-gray-400 mb-10">Get your free quote today. Serving Palos Verdes and the entire South Bay area.</p>
+            <h2 class="text-3xl lg:text-5xl font-display font-bold mb-6">Ready for a Cleaner Property?</h2>
+            <p class="text-xl text-gray-400 mb-10">Get your free quote today. Serving Manhattan Beach and the entire South Bay area.</p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tel:3107559439" class="btn-primary px-10 py-5 rounded-xl text-xl font-bold">
+                <a href="tel:3107559439" class="btn-primary text-white px-10 py-5 rounded-xl text-xl font-bold">
                     Call (310) 755-9439
                 </a>
             </div>
-            <div class="mt-12 flex flex-wrap justify-center gap-6 text-gray-400">
+            <div class="mt-12 flex flex-wrap justify-center gap-8 text-gray-400">
                 <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-brand-green" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                    </svg>
+                    <svg class="w-5 h-5 text-brand-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                     Free Estimates
                 </div>
                 <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-brand-green" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                    </svg>
+                    <svg class="w-5 h-5 text-brand-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                     Licensed & Insured
                 </div>
                 <div class="flex items-center gap-2">
-                    <svg class="w-5 h-5 text-brand-green" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                    </svg>
+                    <svg class="w-5 h-5 text-brand-green" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
                     Satisfaction Guaranteed
                 </div>
             </div>
@@ -382,46 +446,44 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-8">
                 <div>
-                    <div class="text-2xl font-bold mb-4">
-                        Property<span class="text-brand-green">Wash</span>
+                    <div class="text-2xl font-display font-bold mb-4">
+                        <span class="text-brand-blue-light">Property</span><span class="text-brand-green">Wash</span><span class="text-gray-500">.com</span>
                     </div>
-                    <p class="text-gray-400">#1 rated pressure washing company in Palos Verdes and South Bay.</p>
+                    <p class="text-gray-400">Professional pressure washing services in Manhattan Beach and the South Bay area.</p>
                 </div>
                 <div>
                     <h4 class="font-bold mb-4">Services</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li>Roof Washing</li>
-                        <li>Building Washing</li>
-                        <li>Pressure Washing</li>
-                        <li>Drone Cleaning</li>
+                        <li>House Washing</li>
+                        <li>Roof Sealing</li>
+                        <li>Drone Washing</li>
+                        <li>Commercial Cleaning</li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold mb-4">Areas Served</h4>
+                    <h4 class="font-bold mb-4">Service Areas</h4>
                     <ul class="space-y-2 text-gray-400">
+                        <li>Manhattan Beach</li>
+                        <li>Hermosa Beach</li>
                         <li>Palos Verdes</li>
-                        <li>Rancho Palos Verdes</li>
-                        <li>Rolling Hills</li>
                         <li>South Bay</li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-bold mb-4">Contact</h4>
-                    <p class="text-gray-400 mb-2">(310) 755-9439</p>
-                    <p class="text-gray-400">24/7 Service Available</p>
+                    <p class="text-gray-400">(310) 755-9439</p>
+                    <p class="text-gray-400 mt-2">Licensed & Insured</p>
                 </div>
             </div>
             <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500">
-                <p>&copy; 2026 Property Wash. All rights reserved.</p>
+                <p>&copy; 2026 PropertyWash.com LLC. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        const mobileToggle = document.getElementById('mobileToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        mobileToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         });
     </script>
 </body>
