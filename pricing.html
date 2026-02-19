@@ -49,25 +49,29 @@
             max-height: 300px;
         }
         .pricing-card {
-            position: relative;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            transition: all 0.4s ease;
         }
         .pricing-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 25px 60px rgba(212, 175, 55, 0.15);
         }
         .pricing-featured {
-            border: 2px solid #D4AF37;
+            border: 3px solid #D4AF37;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
         }
-        .pricing-featured::before {
-            content: '';
-            position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: linear-gradient(135deg, #D4AF37, #B5952F, #D4AF37);
-            border-radius: 0.5rem;
-            z-index: -1;
-            opacity: 0.5;
-            filter: blur(8px);
+        .tab-btn {
+            transition: all 0.3s ease;
+        }
+        .tab-btn.active {
+            background-color: #D4AF37;
+            color: #000;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -106,318 +110,213 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-[50vh] flex items-center justify-center text-center px-4 pt-20">
+    <section class="min-h-[50vh] flex items-center justify-center text-center px-4 pt-20 pb-10">
         <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/5 rounded-full blur-3xl"></div>
         <div class="relative z-10 max-w-4xl mx-auto">
-            <div class="mb-6"><span class="inline-block text-gold text-sm uppercase tracking-[0.3em] font-medium border border-gold/30 px-5 py-2 rounded-full">Transparent Pricing</span></div>
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">Simple <span class="text-gold">Pricing</span></h1>
-            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">No hidden fees. No contracts. Just results. Choose the plan that works for your business.</p>
+            <div class="mb-4"><span class="inline-block text-gold text-xs uppercase tracking-[0.3em] font-medium border border-gold/30 px-4 py-1.5 rounded-full">Transparent Pricing</span></div>
+            <h1 class="text-5xl md:text-6xl font-bold text-white mb-4 leading-tight">Simple <span class="text-gold">Pricing</span></h1>
+            <p class="text-lg text-gray-400 max-w-xl mx-auto font-light leading-relaxed">Choose your solution. Scale as you grow. No contracts, no hidden fees.</p>
+            
+            <!-- Tab Selector -->
+            <div class="flex justify-center gap-2 mt-8">
+                <button onclick="showTab('websites')" id="tab-websites" class="tab-btn active px-6 py-2.5 rounded-full text-sm font-semibold uppercase tracking-wider border border-gold/30">Websites</button>
+                <button onclick="showTab('ai')" id="tab-ai" class="tab-btn px-6 py-2.5 rounded-full text-sm font-semibold uppercase tracking-wider border border-gold/30 text-gray-400">AI Receptionist</button>
+                <button onclick="showTab('bundles')" id="tab-bundles" class="tab-btn px-6 py-2.5 rounded-full text-sm font-semibold uppercase tracking-wider border border-gold/30 text-gray-400">Bundles</button>
+            </div>
         </div>
     </section>
 
     <!-- Pricing Section -->
-    <section class="py-24 bg-gradient-to-b from-gray-900 to-black">
+    <section class="py-8 bg-gradient-to-b from-gray-900 to-black">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-gold text-sm uppercase tracking-[0.2em] font-medium">Choose Your Plan</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-white mt-4">Invest in Growth</h2>
-                <div class="w-16 h-0.5 bg-gold mx-auto mt-6"></div>
-                <p class="text-gray-400 mt-6 max-w-2xl mx-auto">Three tiers for every business. Start small and scale up, or go all-in from day one.</p>
-            </div>
 
-            <!-- WEB DESIGN PRICING -->
-            <div class="mb-20">
-                <h3 class="text-2xl font-bold text-white text-center mb-10 flex items-center justify-center gap-3">
-                    <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                    Website Design
-                </h3>
-                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
-
+            <!-- WEBSITES TAB -->
+            <div id="section-websites" class="tab-content fade-in">
+                <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     <!-- Starter -->
-                    <div class="pricing-card bg-gray-900/80 border border-gray-800 rounded-lg overflow-hidden">
-                        <div class="p-10">
-                            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">Starter</h3>
-                            <p class="text-gray-500 text-sm mb-6">Perfect for new businesses</p>
-                            <div class="flex items-baseline">
-                                <span class="text-5xl font-display font-bold text-white">$299</span>
-                                <span class="ml-2 text-gray-500">/mo</span>
-                            </div>
-                            <p class="mt-2 text-gold text-xs uppercase tracking-wider font-medium">$0 Down Payment</p>
-                            <ul class="mt-8 space-y-4 text-gray-300 text-sm">
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>3-page website (Home, About, Contact)</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Mobile responsive design</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Secure Hosting + SSL</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>2 updates per month</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Basic SEO setup</li>
-                            </ul>
-                            <a href="#contact" class="mt-10 block w-full text-center border-2 border-gold text-gold py-3.5 rounded font-bold text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition">Get Started</a>
-                        </div>
+                    <div class="pricing-card bg-gray-900/80 border border-gray-800 rounded-xl p-6">
+                        <div class="text-sm font-bold text-gray-400 uppercase tracking-wider">Starter</div>
+                        <div class="text-3xl font-display font-bold text-white mt-1">$299<span class="text-lg text-gray-500 font-normal">/mo</span></div>
+                        <div class="text-xs text-gold mt-1">$0 Down</div>
+                        <ul class="mt-4 space-y-2 text-gray-300 text-sm">
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>3-page website</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Mobile responsive</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Hosting + SSL</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>2 updates/mo</li>
+                        </ul>
+                        <a href="#contact" class="mt-5 block w-full text-center border-2 border-gold text-gold py-2.5 rounded-lg font-bold text-sm uppercase tracking-wider hover:bg-gold hover:text-black transition">Select</a>
                     </div>
 
-                    <!-- Professional (Featured) -->
-                    <div class="pricing-card pricing-featured bg-gray-900 rounded-lg overflow-hidden relative">
-                        <div class="bg-gold text-black text-center py-2.5 text-xs font-bold uppercase tracking-widest">Most Popular</div>
-                        <div class="p-10">
-                            <h3 class="text-sm font-bold text-gold uppercase tracking-widest mb-1">Professional</h3>
-                            <p class="text-gray-500 text-sm mb-6">For established businesses</p>
-                            <div class="flex items-baseline">
-                                <span class="text-5xl font-display font-bold text-white">$499</span>
-                                <span class="ml-2 text-gray-500">/mo</span>
-                            </div>
-                            <p class="mt-2 text-gold text-xs uppercase tracking-wider font-medium">$0 Down Payment</p>
-                            <ul class="mt-8 space-y-4 text-gray-300 text-sm">
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Custom 5+ page website</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Mobile responsive design</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Secure Hosting + SSL</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Unlimited updates</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Advanced SEO optimization</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Contact form integration</li>
-                            </ul>
-                            <a href="#contact" class="mt-10 block w-full text-center btn-gold py-3.5 rounded font-bold text-sm uppercase tracking-widest">Get Started</a>
-                        </div>
+                    <!-- Professional -->
+                    <div class="pricing-card pricing-featured bg-gray-900 rounded-xl p-6 relative">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-black px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Most Popular</div>
+                        <div class="text-sm font-bold text-gold uppercase tracking-wider">Professional</div>
+                        <div class="text-3xl font-display font-bold text-white mt-1">$499<span class="text-lg text-gray-500 font-normal">/mo</span></div>
+                        <div class="text-xs text-gold mt-1">$0 Down</div>
+                        <ul class="mt-4 space-y-2 text-gray-300 text-sm">
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>5+ pages + blog</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Mobile responsive</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Hosting + SSL</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><strong>Unlimited</strong> updates</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Contact forms</li>
+                        </ul>
+                        <a href="#contact" class="mt-5 block w-full text-center btn-gold py-2.5 rounded-lg font-bold text-sm uppercase tracking-wider">Select</a>
                     </div>
 
                     <!-- Premium -->
-                    <div class="pricing-card bg-gray-900/80 border border-gray-800 rounded-lg overflow-hidden">
-                        <div class="p-10">
-                            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">Premium</h3>
-                            <p class="text-gray-500 text-sm mb-6">The complete package</p>
-                            <div class="flex items-baseline">
-                                <span class="text-5xl font-display font-bold text-white">$799</span>
-                                <span class="ml-2 text-gray-500">/mo</span>
-                            </div>
-                            <p class="mt-2 text-gold text-xs uppercase tracking-wider font-medium">$0 Down Payment</p>
-                            <ul class="mt-8 space-y-4 text-gray-300 text-sm">
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Everything in Professional, plus:</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Unlimited pages</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Custom animations</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Priority support</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Quarterly strategy calls</li>
-                            </ul>
-                            <a href="#contact" class="mt-10 block w-full text-center border-2 border-gold text-gold py-3.5 rounded font-bold text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition">Get Started</a>
-                        </div>
+                    <div class="pricing-card bg-gray-900/80 border border-gray-800 rounded-xl p-6">
+                        <div class="text-sm font-bold text-gray-400 uppercase tracking-wider">Premium</div>
+                        <div class="text-3xl font-display font-bold text-white mt-1">$799<span class="text-lg text-gray-500 font-normal">/mo</span></div>
+                        <div class="text-xs text-gold mt-1">$0 Down</div>
+                        <ul class="mt-4 space-y-2 text-gray-300 text-sm">
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><strong>Everything</strong> + e-commerce</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Unlimited pages</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Custom animations</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Priority support</li>
+                        </ul>
+                        <a href="#contact" class="mt-5 block w-full text-center border-2 border-gold text-gold py-2.5 rounded-lg font-bold text-sm uppercase tracking-wider hover:bg-gold hover:text-black transition">Select</a>
                     </div>
-
                 </div>
             </div>
 
-            <!-- AI RECEPTIONIST PRICING -->
-            <div class="mb-20">
-                <h3 class="text-2xl font-bold text-white text-center mb-10 flex items-center justify-center gap-3">
-                    <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
-                    AI Receptionist
-                </h3>
-                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
-
+            <!-- AI RECEPTIONIST TAB -->
+            <div id="section-ai" class="tab-content hidden fade-in">
+                <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     <!-- Basic -->
-                    <div class="pricing-card bg-gray-900/80 border border-gray-800 rounded-lg overflow-hidden">
-                        <div class="p-10">
-                            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">Basic</h3>
-                            <p class="text-gray-500 text-sm mb-6">For small teams</p>
-                            <div class="flex items-baseline">
-                                <span class="text-5xl font-display font-bold text-white">$299</span>
-                                <span class="ml-2 text-gray-500">/mo</span>
-                            </div>
-                            <p class="mt-2 text-gold text-xs uppercase tracking-wider font-medium">$0 Down Payment</p>
-                            <ul class="mt-8 space-y-4 text-gray-300 text-sm">
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>500 minutes/month</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Basic call answering</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Appointment booking</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Email notifications</li>
-                            </ul>
-                            <a href="#contact" class="mt-10 block w-full text-center border-2 border-gold text-gold py-3.5 rounded font-bold text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition">Get Started</a>
-                        </div>
+                    <div class="pricing-card bg-gray-900/80 border border-gray-800 rounded-xl p-6">
+                        <div class="text-sm font-bold text-gray-400 uppercase tracking-wider">Basic</div>
+                        <div class="text-3xl font-display font-bold text-white mt-1">$299<span class="text-lg text-gray-500 font-normal">/mo</span></div>
+                        <div class="text-xs text-gold mt-1">$0 Down</div>
+                        <ul class="mt-4 space-y-2 text-gray-300 text-sm">
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>500 minutes/mo</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Basic call answering</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Booking & reminders</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Email notifications</li>
+                        </ul>
+                        <a href="#contact" class="mt-5 block w-full text-center border-2 border-gold text-gold py-2.5 rounded-lg font-bold text-sm uppercase tracking-wider hover:bg-gold hover:text-black transition">Select</a>
                     </div>
 
-                    <!-- Business (Featured) -->
-                    <div class="pricing-card pricing-featured bg-gray-900 rounded-lg overflow-hidden relative">
-                        <div class="bg-gold text-black text-center py-2.5 text-xs font-bold uppercase tracking-widest">Best Value</div>
-                        <div class="p-10">
-                            <h3 class="text-sm font-bold text-gold uppercase tracking-widest mb-1">Business</h3>
-                            <p class="text-gray-500 text-sm mb-6">For growing businesses</p>
-                            <div class="flex items-baseline">
-                                <span class="text-5xl font-display font-bold text-white">$499</span>
-                                <span class="ml-2 text-gray-500">/mo</span>
-                            </div>
-                            <p class="mt-2 text-gold text-xs uppercase tracking-wider font-medium">$0 Down Payment</p>
-                            <ul class="mt-8 space-y-4 text-gray-300 text-sm">
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Unlimited calls</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>24/7 AI answering</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>SMS & email booking</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Custom business training</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Call transcripts & analytics</li>
-                            </ul>
-                            <a href="#contact" class="mt-10 block w-full text-center btn-gold py-3.5 rounded font-bold text-sm uppercase tracking-widest">Get Started</a>
-                        </div>
+                    <!-- Business -->
+                    <div class="pricing-card pricing-featured bg-gray-900 rounded-xl p-6 relative">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-black px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Best Value</div>
+                        <div class="text-sm font-bold text-gold uppercase tracking-wider">Business</div>
+                        <div class="text-3xl font-display font-bold text-white mt-1">$499<span class="text-lg text-gray-500 font-normal">/mo</span></div>
+                        <div class="text-xs text-gold mt-1">$0 Down</div>
+                        <ul class="mt-4 space-y-2 text-gray-300 text-sm">
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><strong>Unlimited</strong> calls</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>24/7 AI answering</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>SMS & email booking</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Call transcripts</li>
+                        </ul>
+                        <a href="#contact" class="mt-5 block w-full text-center btn-gold py-2.5 rounded-lg font-bold text-sm uppercase tracking-wider">Select</a>
                     </div>
 
                     <!-- Enterprise -->
-                    <div class="pricing-card bg-gray-900/80 border border-gray-800 rounded-lg overflow-hidden">
-                        <div class="p-10">
-                            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">Enterprise</h3>
-                            <p class="text-gray-500 text-sm mb-6">Full service solution</p>
-                            <div class="flex items-baseline">
-                                <span class="text-5xl font-display font-bold text-white">$799</span>
-                                <span class="ml-2 text-gray-500">/mo</span>
-                            </div>
-                            <p class="mt-2 text-gold text-xs uppercase tracking-wider font-medium">$0 Down Payment</p>
-                            <ul class="mt-8 space-y-4 text-gray-300 text-sm">
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Everything in Business, plus:</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Multi-location support</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Advanced CRM integrations</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Priority phone support</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Quarterly optimization reviews</li>
-                            </ul>
-                            <a href="#contact" class="mt-10 block w-full text-center border-2 border-gold text-gold py-3.5 rounded font-bold text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition">Get Started</a>
-                        </div>
+                    <div class="pricing-card bg-gray-900/80 border border-gray-800 rounded-xl p-6">
+                        <div class="text-sm font-bold text-gray-400 uppercase tracking-wider">Enterprise</div>
+                        <div class="text-3xl font-display font-bold text-white mt-1">$799<span class="text-lg text-gray-500 font-normal">/mo</span></div>
+                        <div class="text-xs text-gold mt-1">$0 Down</div>
+                        <ul class="mt-4 space-y-2 text-gray-300 text-sm">
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg><strong>Everything</strong> + multi-location</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Advanced CRM sync</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Priority phone support</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Quarterly reviews</li>
+                        </ul>
+                        <a href="#contact" class="mt-5 block w-full text-center border-2 border-gold text-gold py-2.5 rounded-lg font-bold text-sm uppercase tracking-wider hover:bg-gold hover:text-black transition">Select</a>
                     </div>
-
                 </div>
             </div>
-                <div class="pricing-card pricing-featured bg-gray-900 rounded-lg overflow-hidden relative">
-                    <div class="bg-gold text-black text-center py-2.5 text-xs font-bold uppercase tracking-widest">Most Popular</div>
-                    <div class="p-10">
-                        <h3 class="text-sm font-bold text-gold uppercase tracking-widest mb-1">Koda Bundle</h3>
-                        <p class="text-gray-500 text-sm mb-6">Website + AI Receptionist</p>
-                        <div class="flex items-baseline">
-                            <span class="text-5xl font-display font-bold text-white">$750</span>
-                            <span class="ml-2 text-gray-500">/mo</span>
-                        </div>
-                        <p class="mt-2 text-gold text-xs uppercase tracking-wider font-medium">$0 Down Payment</p>
-                        <ul class="mt-8 space-y-4 text-gray-300 text-sm">
-                            <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Everything in Web Plan</li>
-                            <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Everything in AI Plan</li>
-                            <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Priority Support</li>
-                        </ul>
-                        <a href="https://buy.stripe.com/test_9B67sL1xVema09i3cB3Je01" class="mt-10 block w-full text-center btn-gold py-3.5 rounded font-bold text-sm uppercase tracking-widest">Get Started</a>
-                    </div>
-                </div>
 
-                <!-- Plan 3: Koda AI -->
-                <div class="pricing-card bg-gray-900/80 border border-gray-800 rounded-lg overflow-hidden">
-                    <div class="p-10">
-            <!-- BUNDLE PRICING (Best Deal) -->
-            <div class="mb-16">
-                <h3 class="text-2xl font-bold text-white text-center mb-10 flex items-center justify-center gap-3">
-                    <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-                    Koda Bundle <span class="text-gold text-base font-normal">(Website + AI)</span>
-                    <span class="bg-gold text-black text-xs px-3 py-1 rounded-full ml-2">SAVE 10%</span>
-                </h3>
-                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
-
+            <!-- BUNDLES TAB -->
+            <div id="section-bundles" class="tab-content hidden fade-in">
+                <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     <!-- Starter Bundle -->
-                    <div class="pricing-card bg-gray-900/80 border border-gray-800 rounded-lg overflow-hidden">
-                        <div class="p-10">
-                            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">Starter Bundle</h3>
-                            <p class="text-gray-500 text-sm mb-6">Web Starter + AI Basic</p>
-                            <div class="flex items-baseline">
-                                <span class="text-5xl font-display font-bold text-white">$499</span>
-                                <span class="ml-2 text-gray-500">/mo</span>
-                            </div>
-                            <p class="mt-1 text-gold text-xs">Save $99/month</p>
-                            <p class="mt-2 text-gray-500 text-xs">Was $598/mo separately</p>
-                            <ul class="mt-6 space-y-3 text-gray-300 text-sm">
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>3-page website</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>500 min AI calls</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Everything in both Starter plans</li>
-                            </ul>
-                            <a href="#contact" class="mt-8 block w-full text-center border-2 border-gold text-gold py-3.5 rounded font-bold text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition">Get Started</a>
-                        </div>
+                    <div class="pricing-card bg-gray-900/80 border border-gray-800 rounded-xl p-6">
+                        <div class="text-sm font-bold text-gray-400 uppercase tracking-wider">Starter Bundle</div>
+                        <div class="text-2xl text-gray-500 line-through mt-1">$598</div>
+                        <div class="text-3xl font-display font-bold text-white">$499<span class="text-lg text-gray-500 font-normal">/mo</span></div>
+                        <div class="text-xs text-gold mt-1">Save $99/mo • $0 Down</div>
+                        <ul class="mt-4 space-y-2 text-gray-300 text-sm">
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Web: 3-page site</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>AI: 500 min/mo</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Both starter plans</li>
+                        </ul>
+                        <a href="#contact" class="mt-5 block w-full text-center border-2 border-gold text-gold py-2.5 rounded-lg font-bold text-sm uppercase tracking-wider hover:bg-gold hover:text-black transition">Select</a>
                     </div>
 
-                    <!-- Professional Bundle (Featured) -->
-                    <div class="pricing-card pricing-featured bg-gray-900 rounded-lg overflow-hidden relative">
-                        <div class="bg-gold text-black text-center py-2.5 text-xs font-bold uppercase tracking-widest">Most Popular Bundle</div>
-                        <div class="p-10">
-                            <h3 class="text-sm font-bold text-gold uppercase tracking-widest mb-1">Pro Bundle</h3>
-                            <p class="text-gray-500 text-sm mb-6">Web Pro + AI Business</p>
-                            <div class="flex items-baseline">
-                                <span class="text-5xl font-display font-bold text-white">$899</span>
-                                <span class="ml-2 text-gray-500">/mo</span>
-                            </div>
-                            <p class="mt-1 text-gold text-xs">Save $99/month</p>
-                            <p class="mt-2 text-gray-500 text-xs">Was $998/mo separately</p>
-                            <ul class="mt-6 space-y-3 text-gray-300 text-sm">
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>5+ page custom website</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Unlimited AI calls</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Everything in both Professional plans</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Priority support</li>
-                            </ul>
-                            <a href="#contact" class="mt-8 block w-full text-center btn-gold py-3.5 rounded font-bold text-sm uppercase tracking-widest">Get Started</a>
-                        </div>
+                    <!-- Pro Bundle -->
+                    <div class="pricing-card pricing-featured bg-gray-900 rounded-xl p-6 relative">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-black px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Most Popular</div>
+                        <div class="text-sm font-bold text-gold uppercase tracking-wider">Pro Bundle</div>
+                        <div class="text-2xl text-gray-500 line-through mt-1">$998</div>
+                        <div class="text-3xl font-display font-bold text-white">$899<span class="text-lg text-gray-500 font-normal">/mo</span></div>
+                        <div class="text-xs text-gold mt-1">Save $99/mo • $0 Down</div>
+                        <ul class="mt-4 space-y-2 text-gray-300 text-sm">
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Web: 5+ pages + blog</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>AI: Unlimited calls</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Both pro plans + priority</li>
+                        </ul>
+                        <a href="#contact" class="mt-5 block w-full text-center btn-gold py-2.5 rounded-lg font-bold text-sm uppercase tracking-wider">Select</a>
                     </div>
 
                     <!-- Premium Bundle -->
-                    <div class="pricing-card bg-gray-900/80 border border-gray-800 rounded-lg overflow-hidden">
-                        <div class="p-10">
-                            <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-1">Premium Bundle</h3>
-                            <p class="text-gray-500 text-sm mb-6">Web Premium + AI Enterprise</p>
-                            <div class="flex items-baseline">
-                                <span class="text-5xl font-display font-bold text-white">$1,299</span>
-                                <span class="ml-2 text-gray-500">/mo</span>
-                            </div>
-                            <p class="mt-1 text-gold text-xs">Save $299/month</p>
-                            <p class="mt-2 text-gray-500 text-xs">Was $1,598/mo separately</p>
-                            <ul class="mt-6 space-y-3 text-gray-300 text-sm">
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Unlimited pages + features</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Multi-location AI support</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Everything in both Premium plans</li>
-                                <li class="flex items-start"><svg class="w-5 h-5 text-gold mr-3 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Dedicated account manager</li>
-                            </ul>
-                            <a href="#contact" class="mt-8 block w-full text-center border-2 border-gold text-gold py-3.5 rounded font-bold text-sm uppercase tracking-widest hover:bg-gold hover:text-black transition">Get Started</a>
-                        </div>
+                    <div class="pricing-card bg-gray-900/80 border border-gray-800 rounded-xl p-6">
+                        <div class="text-sm font-bold text-gray-400 uppercase tracking-wider">Premium Bundle</div>
+                        <div class="text-2xl text-gray-500 line-through mt-1">$1,598</div>
+                        <div class="text-3xl font-display font-bold text-white">$1,299<span class="text-lg text-gray-500 font-normal">/mo</span></div>
+                        <div class="text-xs text-gold mt-1">Save $299/mo • $0 Down</div>
+                        <ul class="mt-4 space-y-2 text-gray-300 text-sm">
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Web: Unlimited + e-com</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>AI: Multi-location</li>
+                            <li class="flex items-center gap-2"><svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Dedicated manager</li>
+                        </ul>
+                        <a href="#contact" class="mt-5 block w-full text-center border-2 border-gold text-gold py-2.5 rounded-lg font-bold text-sm uppercase tracking-wider hover:bg-gold hover:text-black transition">Select</a>
                     </div>
-
                 </div>
             </div>
 
-            <!-- FAQ Note -->
-            <div class="mt-16 text-center bg-gray-900/50 rounded-xl py-8 px-6 max-w-3xl mx-auto">
-                <h4 class="text-white font-bold mb-4">All Plans Include:</h4>
-                <div class="flex flex-wrap justify-center gap-6 text-gray-400 text-sm">
-                    <span class="flex items-center gap-2"><svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> No contracts</span>
-                    <span class="flex items-center gap-2"><svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Cancel anytime</span>
-                    <span class="flex items-center gap-2"><svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> 24/7 support</span>
-                    <span class="flex items-center gap-2"><svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> $0 down payment</span>
-                </div>
+            <!-- Trust Badges -->
+            <div class="flex flex-wrap justify-center gap-8 mt-12 text-gray-400 text-sm">
+                <span class="flex items-center gap-2"><svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> No Contracts</span>
+                <span class="flex items-center gap-2"><svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Cancel Anytime</span>
+                <span class="flex items-center gap-2"><svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> $0 Down Payment</span>
             </div>
+
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-24 bg-gradient-to-b from-black to-gray-900">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Questions?</h2>
-            <p class="text-gray-400 mb-10 max-w-xl mx-auto">We're here to help. Reach out and we'll get back to you within 24 hours.</p>
-            <a href="contact.html" class="inline-block btn-gold px-10 py-4 text-base font-bold uppercase tracking-widest rounded">Contact Us</a>
+    <!-- CTA -->
+    <section class="py-16 bg-gradient-to-b from-black to-gray-900 text-center">
+        <div class="max-w-xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-white mb-4">Questions?</h2>
+            <p class="text-gray-400 mb-6">We'll get back to you within 24 hours.</p>
+            <a href="contact.html" class="inline-block btn-gold px-8 py-3 rounded-lg font-bold uppercase tracking-wider">Contact Us</a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black border-t border-gray-800/50 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <img src="logo_v2.svg" alt="Koda Creative" class="h-10 w-auto">
-                </div>
-                <div class="flex space-x-8 text-sm">
-                    <a href="services.html" class="text-gray-400 hover:text-gold transition">Services</a>
-                    <a href="pricing.html" class="text-gray-400 hover:text-gold transition">Pricing</a>
-                    <a href="why-us.html" class="text-gray-400 hover:text-gold transition">Why Us</a>
-                    <a href="contact.html" class="text-gray-400 hover:text-gold transition">Contact</a>
-                </div>
-            </div>
-            <div class="mt-8 pt-8 border-t border-gray-800/50 text-center">
-                <p class="text-gray-600 text-xs tracking-wider">&copy; 2026 Koda Creative. Los Angeles.</p>
-            </div>
+    <footer class="bg-black border-t border-gray-800/50 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-600 text-sm">© 2026 Koda Creative. Los Angeles.</p>
         </div>
     </footer>
 
     <script>
-        const mobileToggle = document.getElementById('mobileToggle');
-        const mobileMenu = document.getElementById('mobileMenu');
-        mobileToggle.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
-    </script>
-</body>
-</html>
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all sections
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('active');
+                el.classList.add('text-gray-400');
+            });
+            
+            // Show selected section
+            document.getElementById('section-' + tabName).classList.remove('hidden');
+            document.getElementById('tab-' + tabName).classList.add('active');
+            document.getElementById('tab-' + tabName).classList.remove('text-gray-400');
+        }
+
+        // Mobile menu
+        const mobileToggle = document.getElementById('mobile
