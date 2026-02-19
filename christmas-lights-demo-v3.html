@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumina Holiday Lighting | Design & Install</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f8f9fa; }
+        
+        .hero-gradient { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8a 50%, #3d7ab5 100%); }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, #c9a227 0%, #e0c45c 100%);
+            color: #1e3a5f;
+            font-weight: 700;
+            padding: 14px 28px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 16px;
+        }
+        
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(201, 162, 39, 0.4); }
+        
+        .btn-outline {
+            background: white;
+            color: #1e3a5f;
+            border: 2px solid #1e3a5f;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-outline:hover { background: #1e3a5f; color: white; }
+        
+        /* Christmas Light Styles */
+        .christmas-light {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { opacity: 1; filter: brightness(1.2); }
+            50% { opacity: 0.85; filter: brightness(0.9); }
+        }
+        
+        .light-c9 {
+            width: 20px;
+            height: 26px;
+            border-radius: 50% 50% 45% 45%;
+        }
+        
+        .light-c7 {
+            width: 16px;
+            height: 20px;
+            border-radius: 45%;
+        }
+        
+        .light-mini {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+        
+        /* Color Variations */
+        .warm-white { background: #fff8e7; box-shadow: 0 0 20px #fff8e7, 0 0 40px #ffd700, 0 0 60px rgba(255, 215, 0, 0.5); }
+        .pure-white { background: #ffffff; box-shadow: 0 0 20px #ffffff, 0 0 40px #e0e0e0, 0 0 60px rgba(255, 255, 255, 0.5); }
+        .red { background: #ff3333; box-shadow: 0 0 20px #ff3333, 0 0 40px #cc0000, 0 0 60px rgba(255, 0, 0, 0.5); }
+        .green { background: #00cc44; box-shadow: 0 0 20px #00cc44, 0 0 40px #009933, 0 0 60px rgba(0, 204, 0, 0.5); }
+        .blue { background: #3366ff; box-shadow: 0 0 20px #3366ff, 0 0 40px #0033cc, 0 0 60px rgba(0, 100, 255, 0.5); }
+        .gold { background: #ffcc00; box-shadow: 0 0 20px #ffcc00, 0 0 40px #ff9900, 0 0 60px rgba(255, 200, 0, 0.5); }
+        .multi-red { background: #ff4444; box-shadow: 0 0 20px #ff4444; }
+        .multi-green { background: #22cc44; box-shadow: 0 0 20px #22cc44; }
+        .multi-blue { background: #4488ff; box-shadow: 0 0 20px #4488ff; }
+        .multi-yellow { background: #ffcc22; box-shadow: 0 0 20px #ffcc22; }
+        
+        .selected { border: 3px solid #1e3a5f !important; box-shadow: 0 0 0 4px rgba(30, 58, 95, 0.1); }
+        
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 360px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            z-index: 10000;
+            overflow: hidden;
+        }
+        
+        .chat-minimized { height: 70px; }
+        .chat-expanded { height: 500px; }
+        
+        .chat-header {
+            background: #1e3a5f;
+            color: white;
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-body {
+            height: 350px;
+            overflow-y: auto;
+            padding: 16px;
+            background: #f5f5f5;
+        }
+        
+        .chat-input {
+            padding: 12px;
+            border-top: 1px solid #ddd;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .message { 
+            padding: 10px 14px; 
+            border-radius: 12px; 
+            margin-bottom: 8px; 
+            max-width: 85%; 
+            font-size: 14px;
+        }
+        .message.user { background: #1e3a5f; color: white; margin-left: auto; border-bottom-right-radius: 4px; }
+        .message.bot { background: white; border: 1px solid #ddd; border-bottom-left-radius: 4px; }
+        
+        #light-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        
+        .sticky-controls {
+            position: sticky;
+            top: 100px;
+        }
+        
+        .preview-btn-container {
+            position: fixed;
+            bottom: 100px;
+            right: 400px;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-serif font-bold text-[#1e3a5f]">
+                Lumina <span class="font-light">LIGHTING</span>
+            </div>
+            <div class="hidden md:flex gap-8">
+                <a href="#designer" class="text-gray-700 hover:text-[#1e3a5f] font-medium">Designer</a>
+                <a href="#how-it-works" class="text-gray-700 hover:text-[#1e3a5f] font-medium">How It Works</a>
+                <a href="#pricing" class="text-gray-700 hover:text-[#1e3a5f] font-medium">Pricing</a>
+                <button class="btn-gold text-sm">Get Free Quote</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-gradient text-white pt-32 pb-20">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="text-[#e0c45c] text-sm tracking-widest uppercase font-semibold mb-4">Professional Holiday Lighting</p>
+            <h1 class="text-5xl md:text-6xl font-serif font-bold mb-6">See Your Home<br>in Lights</h1>
+            <p class="text-xl text-white/80 mb-8">Design your perfect holiday display. Enter your address, explore Street View, and visualize professional Christmas lighting.</p>
+            <div class="flex gap-4 justify-center">
+                <a href="#designer" class="btn-gold">Start Designing</a>
+                <button class="btn-outline text-white border-white hover:bg-white hover:text-[#1e3a5f]">Get Quote</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Designer -->
+    <section id="designer" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl font-serif font-bold text-gray-900">Virtual Designer</h2>
+                <p class="text-gray-600 mt-2">Enter your address to see your home</p>
+            </div>
+
+            <!-- Address Input -->
+            <div class="max-w-xl mx-auto mb-8">
+                <div class="flex gap-3">
+                    <input type="text" id="address-input" placeholder="123 Main St, Manhattan Beach, CA" 
+                        class="flex-1 px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#1e3a5f] focus:outline-none">
+                    <button onclick="loadMap()" class="btn-gold">View My Home</button>
+                </div>
+            </div>
+
+            <!-- Design Interface -->
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Map Area -->
+                <div class="lg:col-span-2">
+                    <div id="map-container" class="relative bg-gray-200 rounded-xl overflow-hidden" style="height: 500px;">
+                        <div id="initial-msg" class="absolute inset-0 flex items-center justify-center text-center p-8">
+                            <div>
+                                <div class="text-6xl mb-4">🏠</div>
+                                <p class="text-gray-500">Enter your address above to see your home</p>
+                            </div>
+                        </div>
+                        <iframe id="map-frame" class="w-full h-full border-0 hidden"></iframe>
+                        <div id="light-overlay"></div>
+                    </div>
+                    <div class="flex gap-3 mt-4">
+                        <button onclick="setMapType('street')" class="px-4 py-2 bg-[#1e3a5f] text-white rounded-lg text-sm font-medium">Street View</button>
+                        <button onclick="setMapType('satellite')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg text-sm font-medium">Satellite</button>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="sticky-controls space-y-4">
+                    <!-- Bulb Type -->
+                    <div class="bg-gray-50 rounded-xl p-5">
+                        <h3 class="font-bold text-gray-900 mb-3">Bulb Type</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-lg cursor-pointer border-2 border-transparent hover:border-[#1e3a5f] transition">
+                                <input type="radio" name="bulb" value="c9" checked class="w-5 h-5" onchange="updateBulbType()">
+                                <span class="font-medium">C9 Bulbs (Large)</span>
+                                <span class="ml-auto text-xs text-gray-500">1.5"</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-lg cursor-pointer border-2 border-transparent hover:border-[#1e3a5f] transition">
+                                <input type="radio" name="bulb" value="c7" class="w-5 h-5" onchange="updateBulbType()">
+                                <span class="font-medium">C7 Bulbs (Medium)</span>
+                                <span class="ml-auto text-xs text-gray-500">0.875"</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-lg cursor-pointer border-2 border-transparent hover:border-[#1e3a5f] transition">
+                                <input type="radio" name="bulb" value="mini" class="w-5 h-5" onchange="updateBulbType()">
+                                <span class="font-medium">Mini Lights</span>
+                                <span class="ml-auto text-xs text-gray-500">Small</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Colors -->
+                    <div class="bg-gray-50 rounded-xl p-5">
+                        <h3 class="font-bold text-gray-900 mb-3">Colors</h3>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="color-option selected bg-white rounded-lg p-3 cursor-pointer border-2 border-transparent text-center" onclick="selectColor('warm-white')">
+                                <div class="w-8 h-8 rounded-full bg-amber-200 mx-auto mb-2 shadow-lg"></div>
+                                <span class="text-sm font-medium">Warm White</span>
+                            </div>
+                            <div class="color-option bg-white rounded-lg p-3 cursor-pointer border-2 border-transparent text-center" onclick="selectColor('pure-white')">
+                                <div class="w-8 h-8 rounded-full bg-white border-2 mx-auto mb-2 shadow-lg"></div>
+                                <span class="text-sm font-medium">Pure White</span>
+                            </div>
+                            <div class="color-option bg-white rounded-lg p-3 cursor-pointer border-2 border-transparent text-center" onclick="selectColor('red-green')">
+                                <div class="flex justify-center gap-1 mb-2">
+                                    <div class="w-4 h-4 rounded-full bg-red-500 shadow"></div>
+                                    <div class="w-4 h-4 rounded-full bg-green-500 shadow"></div>
+                                </div>
+                                <span class="text-sm font-medium">Red & Green</span>
+                            </div>
+                            <div class="color-option bg-white rounded-lg p-3 cursor-pointer border-2 border-transparent text-center" onclick="selectColor('blue-white')">
+                                <div class="flex justify-center gap-1 mb-2">
+                                    <div class="w-4 h-4 rounded-full bg-blue-500 shadow"></div>
+                                    <div class="w-4 h-4 rounded-full bg-white border shadow"></div>
+                                </div>
+                                <span class="text-sm font-medium">Blue & White</span>
+                            </div>
+                            <div class="color-option bg-white rounded-lg p-3 cursor-pointer border-2 border-transparent text-center" onclick="selectColor('multi')">
+                                <div class="flex justify-center gap-0.5 mb-2">
+                                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-blue-500"></div>
+                                    <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                                </div>
+                                <span class="text-sm font-medium">Multi-Color</span>
+                            </div>
+                            <div class="color-option bg-white rounded-lg p-3 cursor-pointer border-2 border-transparent text-center" onclick="selectColor('gold')">
+                                <div class="w-8 h-8 rounded-full bg-yellow-400 mx-auto mb-2 shadow-lg"></div>
+                                <span class="text-sm font-medium">Warm Gold</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Installation Area -->
+                    <div class="bg-gray-50 rounded-xl p-5">
+                        <h3 class="font-bold text-gray-900 mb-3">Install On</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-lg cursor-pointer">
+                                <input type="radio" name="area" value="roofline" checked class="w-5 h-5" onchange="updateArea()">
+                                <span>Roofline</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-lg cursor-pointer">
+                                <input type="radio" name="area" value="windows" class="w-5 h-5" onchange="updateArea()">
+                                <span>Windows & Doors</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-lg cursor-pointer">
+                                <input type="radio" name="area" value="full" class="w-5 h-5" onchange="updateArea()">
+                                <span>Full House</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 bg-white rounded-lg cursor-pointer">
+                                <input type="radio" name="area" value="trees" class="w-5 h-5" onchange="updateArea()">
+                                <span>Trees & Bushes</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Preview Button - NOW AT TOP OF CONTROLS -->
+                    <button onclick="showLights()" class="w-full btn-gold py-4 text-lg shadow-lg">
+                        ✨ Preview on My Home
+                    </button>
+                    
+                    <button onclick="clearLights()" class="w-full btn-outline py-3 text-sm">
+                        Clear Lights
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-16 bg-gray-50">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-serif font-bold">How It Works</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div>
+                    <div class="w-16 h-16 bg-[#1e3a5f] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">1</div>
+                    <h3 class="font-bold text-lg mb-2">Enter Address</h3>
+                    <p class="text-gray-600">Type your address to view your home in Street View</p>
+                </div>
+                <div>
+                    <div class="w-16 h-16 bg-[#1e3a5f] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">2</div>
+                    <h3 class="font-bold text-lg mb-2">Design Display</h3>
+                    <p class="text-gray-600">Choose colors, bulb types, and installation areas</p>
+                </div>
+                <div>
+                    <div class="w-16 h-16 bg-[#1e3a5f] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">3</div>
+                    <h3 class="font-bold text-lg mb-2">Get Quote</h3>
+                    <p class="text-gray-600">See your preview and receive a custom quote</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-16 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-serif font-bold">Pricing</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-gray-50 rounded-2xl p-6 text-center">
+                    <h3 class="font-bold text-xl mb-2">Starter</h3>
+                    <div class="text-4xl font-bold text-[#1e3a5f] mb-4">$499</div>
+                    <ul class="text-gray-600 space-y-2 mb-6 text-sm">
+                        <li>✓ Front roofline only</li>
+                        <li>✓ Up to 100 feet</li>
+                        <li>✓ Professional install</li>
+                        <li>✓ Removal included</li>
+                    </ul>
+                    <button class="w-full btn-outline">Select</button>
+                </div>
+                <div class="bg-[#1e3a5f] rounded-2xl p-6 text-center text-white relative transform scale-105">
+                    <span class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#c9a227] text-[#1e3a5f] px-4 py-1 rounded-full text-sm font-bold">Most Popular</span>
+                    <h3 class="font-bold text-xl mb-2">Complete</h3>
+                    <div class="text-4xl font-bold text-[#c9a227] mb-4">$899</div>
+                    <ul class="text-white/80 space-y-2 mb-6 text-sm">
+                        <li>✓ Full house outline</li>
+                        <li>✓ Windows & doors</li>
+                        <li>✓ Up to 300 feet</li>
+                        <li>✓ Install & removal</li>
+                    </ul>
+                    <button class="w-full btn-gold">Select</button>
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-6 text-center">
+                    <h3 class="font-bold text-xl mb-2">Premium</h3>
+                    <div class="text-4xl font-bold text-[#1e3a5f] mb-4">$1,499</div>
+                    <ul class="text-gray-600 space-y-2 mb-6 text-sm">
+                        <li>✓ Everything + trees</li>
+                        <li>✓ Up to 600 feet</li>
+                        <li>✓ Install & removal</li>
+                    </ul>
+                    <button class="w-full btn-outline">Select</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="py-16 bg-[#1e3a5f] text-white text-center">
+        <div class="max-w-2xl mx-auto px-6">
+            <h2 class="text-4xl font-serif font-bold mb-6">Ready to Light Up Your Home?</h2>
+            <button class="btn-gold text-xl px-10 py-4">Call (310) 755-9439</button>
+        </div>
+    </section>
+
+    <!-- Chat Widget -->
+    <div id="chat" class="chat-widget chat-minimized">
+        <div class="chat-header" onclick="toggleChat()">
+            <div>
+                <div class="font-bold">Design Assistant</div>
+                <div class="text-xs text-white/70">Ask about lights & pricing</div>
+            </div>
+            <span id="chat-toggle">▼</span>
+        </div>
+        <div class="chat-body" id="chat-messages">
+            <div class="message bot">Hi! I can help you design your holiday lights. Ask me anything! 🎄</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chat-input" placeholder="Ask a question..." class="flex-1 px-3 py-2 border rounded-lg text-sm">
+            <button onclick="sendChat()" class="bg-[#1e3a5f] text-white px-4 py-2 rounded-lg text-sm">Send</button>
+        </div>
+    </div>
+
+    <script>
+        let currentBulb = 'c9';
+        let currentColor = 'warm-white';
+        let currentArea = 'roofline';
+        
+        function loadMap() {
+            const address = document.getElementById('address-input').value.trim();
+            if (!address) {
+                alert('Please enter your address');
+                return;
+            }
+            
+            document.getElementById('initial-msg').classList.add('hidden');
+            document.getElementById('map-frame').classList.remove('hidden');
+            
+            // Use Google Maps embed with the address
+            const encoded = encodeURIComponent(address);
+            document.getElementById('map-frame').src = `https://www.google.com/maps?q=${encoded}&output=embed&layer=sv`;
+            
+            addChatMessage(`Loading Street View for: ${address} 🏠`, 'bot');
+        }
+        
+        function setMapType(type) {
+            const address = document.getElementById('address-input').value.trim();
+            if (!address) return;
+            
+            const encoded = encodeURIComponent(address);
+            const frame = document.getElementById('map-frame');
+            
+            if (type === 'street') {
+                frame.src = `https://www.google.com/maps?q=${encoded}&output=embed&layer=sv`;
+            } else {
+                frame.src = `https://www.google.com/maps?q=${encoded}&output=embed`;
+            }
+        }
+        
+        function updateBulbType() {
+            currentBulb = document.querySelector('input[name="bulb"]:checked').value;
+        }
+        
+        function selectColor(color) {
+            currentColor = color;
+            document.querySelectorAll('.color-option').forEach(el => el.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+        }
+        
+        function updateArea() {
+            currentArea = document.querySelector('input[name="area"]:checked').value;
+        }
+        
+        function showLights() {
+            const overlay = document.getElementById('light-overlay');
+            const frame = document.getElementById('map-frame');
+            
+            if (frame.classList.contains('hidden')) {
+                alert('Please enter your address and view your home first!');
+                return;
+            }
+            
+            // Clear existing lights
+            overlay.innerHTML = '';
+            
+            // Get color classes
+            const colorClasses = {
+                'warm-white': ['warm-white'],
+                'pure-white': ['pure-white'],
+                'red-green': ['red', 'green'],
+                'blue-white': ['blue', 'white pure-white'],
+                'multi': ['multi-red', 'multi-green', 'multi-blue', 'multi-yellow'],
+                'gold': ['gold']
+            };
+            
+            const colors = colorClasses[currentColor] || ['warm-white'];
+            const bulbClass = 'light-' + currentBulb;
+            
+            // Define light positions based on area
+            let positions = [];
+            
+            if (currentArea === 'roofline') {
+                // Roofline - horizontal lines at top
+                for (let i = 0; i < 20; i++) {
+                    positions.push({top: 10, left: 5 + i * 4.5, color: colors[i % colors.length]});
+                }
+                // Right side down
+                for (let i = 0; i < 12; i++) {
+                    positions.push({top: 10 + i * 6, left: 92, color: colors[i % colors.length]});
+                }
+                // Bottom
+                for (let i = 0; i < 18; i++) {
+                    positions.push({top: 82, left: 5 + i * 4.8, color: colors[i % colors.length]});
+                }
+            } else if (currentArea === 'windows') {
+                // Window frames
+                const windows = [
+                    {t: 35, l: 20, w: 15, h: 20},
+                    {t: 35, l: 42, w: 15, h: 20},
+                    {t: 60, l: 58, w: 8, h: 25} // door
+                ];
+                windows.forEach(win => {
+                    // Top
+                    for (let i = 0; i < 6; i++) {
+                        positions.push({top: win.t, left: win.l + i * (win.w/5), color: colors[0]});
+                    }
+                    // Sides
+                    for (let i = 0; i < 5; i++) {
+                        positions.push({top: win.t + i * (win.h/4), left: win.l, color: colors[0]});
+                        positions.push({top: win.t + i * (win.h/4), left: win.l + win.w, color: colors[0]});
+                    }
+                    // Bottom
+                    for (let i = 0; i < 6; i++) {
+                        positions.push({top: win.t + win.h, left: win.l + i * (win.w/5), color: colors[0]});
+                    }
+                });
+            } else if (currentArea === 'full') {
+                // Full outline
+                for (let i = 0; i < 22; i++) positions.push({top: 8, left: 3 + i * 4.3, color: colors[i % colors.length]});
+                for (let i = 0; i < 14; i++) positions.push({top: 8 + i * 6, left: 95, color: colors[i % colors.length]});
+                for (let i = 0; i < 22; i++) positions.push({top: 90, left: 3 + i * 4.3, color: colors[i % colors.length]});
+                for (let i = 0; i < 14; i++) positions.push({top: 8 + i * 6, left: 3, color: colors[i % colors.length]});
+            } else if (currentArea === 'trees') {
+                // Tree spirals
+                const trees = [{t: 45, l: 15}, {t: 35, l: 75}, {t: 65, l: 85}];
+                trees.forEach((tree, idx) => {
+                    for (let i = 0; i < 20; i++) {
+                        const angle = (i / 20) * Math.PI * 3;
+                        const r = 12 - (i / 20) * 10;
+                        positions.push({
+                            top: tree.t + Math.sin(angle) * r * 0.3,
+                            left: tree.l + Math.cos(angle) * r * 0.2,
+                            color: colors[(idx + i) % colors.length]
+                        });
+                    }
+                });
+            }
+            
+            // Create light elements
+            positions.forEach((pos, idx) => {
+                const light = document.createElement('div');
+                light.className = `christmas-light ${bulbClass} ${pos.color}`;
+                light.style.top = pos.top + '%';
+                light.style.left = pos.left + '%';
+                light.style.animationDelay = (idx * 0.1) + 's';
+                overlay.appendChild(light);
+            });
+            
+            const count = positions.length;
+            addChatMessage(`✨ Added ${count} ${currentBulb.toUpperCase()} lights to your ${currentArea}!`, 'bot');
+        }
+        
+        function clearLights() {
+            document.getElementById('light-overlay').innerHTML = '';
+            addChatMessage('Lights cleared. Try a different design! 🎨', 'bot');
+        }
+        
+        function toggleChat() {
+            const chat = document.getElementById('chat');
+            const toggle = document.getElementById('chat-toggle');
+            if (chat.classList.contains('chat-minimized')) {
+                chat.classList.remove('chat-minimized');
+                chat.classList.add('chat-expanded');
+                toggle.textContent = '▲';
+            } else {
+                chat.classList.add('chat-minimized');
+                chat.classList.remove('chat-expanded');
+                toggle.textContent = '▼';
+            }
+        }
+        
+        function sendChat() {
+            const input = document.getElementById('chat-input');
+            const msg = input.value.trim();
+            if (!msg) return;
+            
+            addChatMessage(msg, 'user');
+            input.value = '';
+            
+            setTimeout(() => {
+                const response = getAIResponse(msg.toLowerCase());
+                addChatMessage(response, 'bot');
+            }, 500);
+        }
+        
+        function addChatMessage(text, sender) {
+            const container = document.getElementById('chat-messages');
+            const msg = document.createElement('div');
+            msg.className = 'message ' + sender;
+            msg.textContent = text;
+            container.appendChild(msg);
+            container.scrollTop = container.scrollHeight;
+        }
+        
+        function getAIResponse(msg) {
+            if (msg.includes('price') || msg.includes('cost')) return 'Our packages range from $499 to $1,499. The most popular Complete package is $899 and includes full house outline with windows and doors. 💰';
+            if (msg.includes('bulb') || msg.includes('light size')) return 'We offer C9 (largest, most visible), C7 (medium), and Mini lights (subtle). C9 is most popular for rooflines! 💡';
+            if (msg.includes('color')) return 'Popular choices: Warm White (elegant), Red & Green (classic), Blue & White (winter wonderland), or Multi-Color (festive)! 🎨';
+            if (msg.includes('install')) return 'Professional installation takes 3-5 hours. We handle everything including removal in January! 🛠️';
+            return 'I can help with pricing, bulb types, colors, or the design process. What would you like to know? 🤔';
+        }
+        
+        document.getElementById('chat-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendChat();
+        });
+        
+        document.getElementById('address-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') loadMap();
+        });
+        
+        // Auto-open chat after 3 seconds
+        setTimeout(() => {
+            const chat = document.getElementById('chat');
+            if (chat.classList.contains('chat-minimized')) {
+                toggleChat();
+            }
+        }, 3000);
+    </script>
+</body>
+</html>
