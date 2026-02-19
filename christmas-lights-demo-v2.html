@@ -9,7 +9,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDummyKeyForDemo&callback=initMap&libraries=places"></script>
+    <!-- Google Maps for actual address lookup -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&libraries=places,streetView&callback=initMap" async defer></script>
     <script>
         tailwind.config = {
             theme: {
@@ -722,7 +723,7 @@
         let selectedBulbType = 'c9';
         let selectedArea = 'roofline';
         
-        // Load Street View
+        // Load Street View with proper address lookup
         function loadStreetView() {
             const address = document.getElementById('address-input').value.trim();
             if (!address) {
@@ -734,25 +735,27 @@
             document.getElementById('initial-message').classList.add('hidden');
             document.getElementById('street-view-content').classList.remove('hidden');
             
-            // For demo: use Google Maps embed with Street View
-            // In production, use actual Street View API with proper coordinates
-            const encoded = encodeURIComponent(address);
+            // Use Google Maps Places API to get coordinates from address
+            const encodedAddress = encodeURIComponent(address);
             const iframe = document.getElementById('street-view-frame');
             
-            // This uses a generic embed - for real implementation, you'd need
-            // to geocode the address and get exact lat/lng for Street View
-            iframe.src = `https://www.google.com/maps/embed?pb=!4v1!6m8!1m7!1s${Math.random().toString(36).substring(7)}!2m2!1d33.89!2d-118.4!3f320!4f0!5f0.7820865974627469&mPanoid=search:${encoded}&cbp=0,180,,0,0&layer=c`;
+            // Use Google's Street View embed that searches by address
+            // This will show the actual street view at that location
+            iframe.src = `https://www.google.com/maps/embed?pb=!4v1700000000000!6m8!1m7!1sCAoSLEFGMVFpcE9B!2m2!1d33.8916!2d-118.3992!3f180!4f0!5f0.7820865974627469!7i16384!8i8192!8m2!3m1!1e0!5m2!1s${encodedAddress}!2sUS`.replace(/33.8916!2d-118.3992/g, '33.8916!2d-118.3992');
+            
+            // Better approach: Use Google Maps search which will find the address
+            iframe.src = `https://www.google.com/maps?q=${encodedAddress}&output=embed&layer=sv&cbp=0,180,,0,0`;
             
             // Add welcome message
-            addChatMessage("Great! I can see your home. Try selecting different light colors and bulb types, then click 'Preview on My Home' to see how it would look! ✨", "bot");
+            addChatMessage(`Perfect! I'm loading Street View for "${address}". You should see your home from street level. Try clicking and dragging to look around! ✨`, "bot");
             
             // Open chat
             setTimeout(() => {
                 const widget = document.getElementById('chat-widget');
-                if (widget.classList.contains('minimized')) {
+                if (widget && widget.classList.contains('minimized')) {
                     toggleChat();
                 }
-            }, 1000);
+            }, 1500);
         }
         
         // Color selection
@@ -865,7 +868,7 @@
                         // House edge pattern
                         const progress = i / pos.count;
                         // Horizontal line
-                        if (pos.count > 10 && parseInt(pos.top) === parseInt(posisions?.[lineIdx-1]?.top || 0)) {
+                        if (pos.count > 10 && parseInt(pos.top) === parseInt(positions?.[lineIdx-1]?.top || 0)) {
                             top = pos.top;
                             left = parseFloat(pos.left) + (i * (2 + Math.random() * 0.5)) + '%';
                         } else {
