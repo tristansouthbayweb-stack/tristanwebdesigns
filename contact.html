@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Koda Creative</title>
+    <meta name="description" content="Get in touch with Koda Creative. We're here to help you grow your business.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            DEFAULT: '#D4AF37',
+                            light: '#E8C84A',
+                            dark: '#B5952F',
+                        }
+                    },
+                    fontFamily: {
+                        display: ['"Playfair Display"', 'serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .btn-gold {
+            background-color: #D4AF37;
+            color: #000;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            background-color: #B5952F;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .mobile-menu.open {
+            max-height: 300px;
+        }
+    </style>
+</head>
+<body class="bg-black text-gray-100">
+
+    <!-- Navigation -->
+    <nav class="bg-black/95 backdrop-blur-sm border-b border-gray-800/50 fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <a href="index.html">
+                        <img src="logo_v2.svg" alt="Koda Creative" class="h-14 w-auto">
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="services.html" class="text-gray-400 hover:text-gold transition text-sm uppercase tracking-wider font-medium">Services</a>
+                    <a href="pricing.html" class="text-gray-400 hover:text-gold transition text-sm uppercase tracking-wider font-medium">Pricing</a>
+                    <a href="why-us.html" class="text-gray-400 hover:text-gold transition text-sm uppercase tracking-wider font-medium">Why Us</a>
+                    <a href="contact.html" class="text-gold transition text-sm uppercase tracking-wider font-medium">Contact</a>
+                    <a href="pricing.html" class="btn-gold px-7 py-2.5 rounded font-bold text-sm uppercase tracking-widest">Get Started</a>
+                </div>
+                <button id="mobileToggle" class="md:hidden text-gray-400 hover:text-white focus:outline-none" aria-label="Toggle menu">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="mobile-menu md:hidden bg-black border-t border-gray-800/50">
+            <div class="px-4 py-4 space-y-3">
+                <a href="services.html" class="block text-gray-400 hover:text-gold text-sm uppercase tracking-wider py-2">Services</a>
+                <a href="pricing.html" class="block text-gray-400 hover:text-gold text-sm uppercase tracking-wider py-2">Pricing</a>
+                <a href="why-us.html" class="block text-gray-400 hover:text-gold text-sm uppercase tracking-wider py-2">Why Us</a>
+                <a href="contact.html" class="block text-gold text-sm uppercase tracking-wider py-2">Contact</a>
+                <a href="pricing.html" class="block btn-gold text-center px-7 py-2.5 rounded font-bold text-sm uppercase tracking-widest mt-2">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[50vh] flex items-center justify-center text-center px-4 pt-20">
+        <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/5 rounded-full blur-3xl"></div>
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <div class="mb-6"><span class="inline-block text-gold text-sm uppercase tracking-[0.3em] font-medium border border-gold/30 px-5 py-2 rounded-full">Get In Touch</span></div>
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">Let's <span class="text-gold">Talk</span></h1>
+            <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">Ready to grow your business? We're here to help. Reach out and we'll get back to you within 24 hours.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-24 bg-gradient-to-b from-gray-900 to-black">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-gray-900/50 border border-gray-800 rounded-lg p-8 md:p-12">
+                
+                <!-- Email -->
+                <div class="text-center mb-12">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl font-bold text-white mb-2">Email Us</h2>
+                    <p class="text-gray-400 mb-4">For general inquiries and support</p>
+                    <a href="mailto:TristanSouthBayWeb@gmail.com" class="text-2xl md:text-3xl text-gold hover:text-gold-light transition font-display">TristanSouthBayWeb@gmail.com</a>
+                </div>
+
+                <div class="border-t border-gray-800 my-12"></div>
+
+                <!-- Quick Info -->
+                <div class="grid md:grid-cols-2 gap-8 text-center">
+                    <div>
+                        <h3 class="text-lg font-bold text-white mb-2">Response Time</h3>
+                        <p class="text-gray-400">We typically respond within 24 hours during business days.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white mb-2">Location</h3>
+                        <p class="text-gray-400">Based in Los Angeles, serving businesses nationwide.</p>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-800 my-12"></div>
+
+                <!-- CTA -->
+                <div class="text-center">
+                    <p class="text-gray-400 mb-6">Ready to get started? Check out our pricing plans.</p>
+                    <a href="pricing.html" class="inline-block btn-gold px-10 py-4 text-base font-bold uppercase tracking-widest rounded">View Pricing</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-800/50 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <img src="logo_v2.svg" alt="Koda Creative" class="h-10 w-auto">
+                </div>
+                <div class="flex space-x-8 text-sm">
+                    <a href="services.html" class="text-gray-400 hover:text-gold transition">Services</a>
+                    <a href="pricing.html" class="text-gray-400 hover:text-gold transition">Pricing</a>
+                    <a href="why-us.html" class="text-gray-400 hover:text-gold transition">Why Us</a>
+                    <a href="contact.html" class="text-gray-400 hover:text-gold transition">Contact</a>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800/50 text-center">
+                <p class="text-gray-600 text-xs tracking-wider">&copy; 2026 Koda Creative. Los Angeles.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileToggle.addEventListener('click', () => { mobileMenu.classList.toggle('open'); });
+    </script>
+</body>
+</html>
