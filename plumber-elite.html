@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Plumber Torrance CA | 24/7 | Licensed Pros (424) 360-2451</title>
+    <meta name="description" content="Emergency plumber Torrance CA - 24/7 plumbing services. Licensed & insured. Water heaters, drain cleaning, leaks, sewer repair. Fast response. Call (424) 360-2451 now!">
+    <meta name="keywords" content="plumber Torrance, emergency plumber Torrance CA, plumbing services Torrance, drain cleaning Torrance, water heater repair Torrance, leak detection Torrance">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#0f172a',
+                            800: '#1e293b',
+                            700: '#334155',
+                        },
+                        electric: {
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                        }
+                    },
+                    fontFamily: {
+                        'display': ['Playfair Display', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0f172a;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        /* Animated gradient background */
+        .gradient-bg {
+            background: linear-gradient(-45deg, #0f172a, #1e293b, #0f172a, #1e3a5f);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Scroll progress bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+        
+        /* Pulsing call button */
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+        
+        .pulse-ring::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: #ef4444;
+            animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        /* Star rating animation */
+        @keyframes starPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .star-animate {
+            animation: starPulse 0.5s ease-in-out;
+        }
+        
+        /* Before/After slider */
+        .before-after-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        
+        .before-after-slider {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 4px;
+            height: 100%;
+            background: #3b82f6;
+            cursor: ew-resize;
+            z-index: 10;
+            transform: translateX(-50%);
+        }
+        
+        .before-after-slider::before {
+            content: '\f337';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: #3b82f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+        }
+        
+        .before-image, .after-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .before-image {
+            clip-path: inset(0 50% 0 0);
+        }
+        
+        /* Chat widget */
+        .chat-widget {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .chat-window {
+            display: none;
+            width: 350px;
+            max-height: 500px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+        
+        .chat-window.active {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 4px;
+        }
+        
+        /* Glow effects */
+        .glow:hover {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+        }
+        
+        /* Splash screen */
+        .splash-screen {
+            position: fixed;
+            inset: 0;
+            background: #0f172a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        @keyframes logoReveal {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .logo-animate {
+            animation: logoReveal 1s ease-out forwards;
+        }
+        
+        /* FAQ Accordion */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-content.active {
+            max-height: 500px;
+        }
+        
+        /* Timeline */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 16px;
+            height: 16px;
+            background: #3b82f6;
+            border-radius: 50%;
+            border: 3px solid #0f172a;
+        }
+        
+        /* Service card hover */
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.3);
+        }
+        
+        /* Mobile sticky call bar */
+        @media (max-width: 768px) {
+            .mobile-call-bar {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #dc2626, #ef4444);
+                padding: 1rem;
+                z-index: 999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.5rem;
+            }
+            
+            body {
+                padding-bottom: 80px;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .mobile-call-bar {
+                display: none;
+            }
+        }
+    </style>
+    
+    <!-- LocalBusiness Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Plumber",
+        "name": "Torrance Elite Plumbing",
+        "image": "https://example.com/logo.png",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Main Street",
+            "addressLocality": "Torrance",
+            "addressRegion": "CA",
+            "postalCode": "90501",
+            "addressCountry": "US"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 33.8358,
+            "longitude": -118.3406
+        },
+        "url": "https://torranceeliteplumbing.com",
+        "telephone": "+14243602451",
+        "priceRange": "$$$",
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                "opens": "00:00",
+                "closes": "23:59"
+            }
+        ],
+        "areaServed": [
+            "Torrance, CA",
+            "Redondo Beach, CA",
+            "Hermosa Beach, CA",
+            "Manhattan Beach, CA",
+            "Palos Verdes, CA",
+            "Carson, CA",
+            "Gardena, CA",
+            "Lomita, CA"
+        ]
+    }
+    </script>
+</head>
+<body class="gradient-bg min-h-screen">
+    <!-- Splash Screen -->
+    <div id="splashScreen" class="splash-screen">
+        <div class="text-center">
+            <div class="logo-animate">
+                <i class="fas fa-faucet-drip text-6xl text-electric-500 mb-4"></i>
+                <h1 class="text-4xl font-bold text-white">Torrance Elite Plumbing</h1>
+                <p class="text-electric-400 mt-2">Excellence in Every Drop</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="glass-dark">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <!-- Logo -->
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-faucet-drip text-3xl text-electric-500"></i>
+                        <div>
+                            <h1 class="text-xl font-bold text-white">Torrance Elite</h1>
+                            <p class="text-xs text-electric-400">Plumbing</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex items-center space-x-8">
+                        <a href="#services" class="text-gray-300 hover:text-white transition">Services</a>
+                        <a href="#estimate" class="text-gray-300 hover:text-white transition">Get Estimate</a>
+                        <a href="#about" class="text-gray-300 hover:text-white transition">About</a>
+                        <a href="#reviews" class="text-gray-300 hover:text-white transition">Reviews</a>
+                        <a href="#faq" class="text-gray-300 hover:text-white transition">FAQ</a>
+                        <a href="#contact" class="px-6 py-3 bg-gradient-to-r from-electric-600 to-electric-500 text-white rounded-full font-semibold hover:shadow-lg hover:shadow-electric-500/50 transition glow">
+                            <i class="fas fa-phone mr-2"></i>(424) 360-2451
+                        </a>
+                    </div>
+                    
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" class="md:hidden text-white text-2xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden glass-dark">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#services" class="block text-gray-300 hover:text-white py-2">Services</a>
+                <a href="#estimate" class="block text-gray-300 hover:text-white py-2">Get Estimate</a>
+                <a href="#about" class="block text-gray-300 hover:text-white py-2">About</a>
+                <a href="#reviews" class="block text-gray-300 hover:text-white py-2">Reviews</a>
+                <a href="#faq" class="block text-gray-300 hover:text-white py-2">FAQ</a>
+                <a href="tel:+14243602451" class="block px-6 py-3 bg-gradient-to-r from-electric-600 to-electric-500 text-white rounded-full font-semibold text-center">
+                    <i class="fas fa-phone mr-2"></i>(424) 360-2451
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <!-- Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-electric-500/20 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-electric-600/10 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div data-aos="fade-right" data-aos-duration="1000">
+                    <div class="inline-flex items-center px-4 py-2 rounded-full glass mb-6">
+                        <span class="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+                        <span class="text-sm text-gray-300">24/7 Emergency Service Available</span>
+                    </div>
+                    
+                    <h1 class="text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">
+                        Torrance's Most <span class="text-transparent bg-clip-text bg-gradient-to-r from-electric-400 to-electric-600">Trusted</span> Plumbers
+                    </h1>
+                    
+                    <p class="text-xl text-gray-400 mb-8 leading-relaxed">
+                        Licensed, insured, and committed to excellence. Serving Torrance and surrounding areas with premium plumbing solutions since 2010.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                        <a href="#estimate" class="px-8 py-4 bg-gradient-to-r from-electric-600 to-electric-500 text-white rounded-full font-semibold text-lg hover:shadow-lg hover:shadow-electric-500/50 transition glow text-center">
+                            <i class="fas fa-calculator mr-2"></i>Get Free Estimate
+                        </a>
+                        <a href="tel:+14243602451" class="px-8 py-4 glass text-white rounded-full font-semibold text-lg hover:bg-white/10 transition text-center">
+                            <i class="fas fa-phone mr-2"></i>(424) 360-2451
+                        </a>
+                    </div>
+                    
+                    <!-- Trust Badges -->
+                    <div class="flex flex-wrap items-center gap-6">
+                        <div class="flex items-center gap-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="text-white font-semibold">4.9/5</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-gray-400">
+                            <i class="fas fa-shield-alt text-electric-500"></i>
+                            <span>Licensed & Insured</span>
+                        </div>
+                        <div class="flex items-center gap-2 text-gray-400">
+                            <i class="fas fa-clock text-electric-500"></i>
+                            <span>60 Min Response</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Content - Glass Form -->
+                <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="glass rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold mb-6">Request a Callback</h3>
+                        <form id="heroForm" class="space-y-4">
+                            <div>
+                                <label class="block text-sm text-gray-400 mb-2">Your Name</label>
+                                <input type="text" class="w-full px-4 py-3 bg-navy-800/50 border border-gray-700 rounded-lg focus:border-electric-500 focus:outline-none transition text-white" placeholder="John Smith" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-400 mb-2">Phone Number</label>
+                                <input type="tel" class="w-full px-4 py-3 bg-navy-800/50 border border-gray-700 rounded-lg focus:border-electric-500 focus:outline-none transition text-white" placeholder="(424) 360-2451" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm text-gray-400 mb-2">Service Needed</label>
+                                <select class="w-full px-4 py-3 bg-navy-800/50 border border-gray-700 rounded-lg focus:border-electric-500 focus:outline-none transition text-white">
+                                    <option value="">Select a service...</option>
+                                    <option value="water-heater">Water Heater</option>
+                                    <option value="drain">Drain Cleaning</option>
+                                    <option value="leak">Leak Detection</option>
+                                    <option value="sewer">Sewer Repair</option>
+                                    <option value="emergency">Emergency</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full px-8 py-4 bg-gradient-to-r from-electric-600 to-electric-500 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-electric-500/50 transition glow">
+                                <i class="fas fa-paper-plane mr-2"></i>Get Callback Now
+                            </button>
+                        </form>
+                        <p class="text-center text-sm text-gray-500 mt-4">
+                            <i class="fas fa-lock mr-1"></i>Your information is secure and private
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="py-16 border-y border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center" data-aos="fade-up" data-aos-delay="0">
+                    <div class="text-4xl font-bold text-electric-500 mb-2">
+                        <span class="counter" data-target="5000">0</span>+
+                    </div>
+                    <p class="text-gray-400">Jobs Completed</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-4xl font-bold text-electric-500 mb-2">
+                        <span class="counter" data-target="14">0</span>
+                    </div>
+                    <p class="text-gray-400">Years Experience</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-4xl font-bold text-electric-500 mb-2 flex items-center justify-center">
+                        <span class="counter" data-target="4.9" data-decimals="1">0</span>
+                        <div class="flex text-yellow-400 text-2xl ml-2">
+                            <i class="fas fa-star star-animate" style="animation-delay: 0s;"></i>
+                            <i class="fas fa-star star-animate" style="animation-delay: 0.1s;"></i>
+                            <i class="fas fa-star star-animate" style="animation-delay: 0.2s;"></i>
+                            <i class="fas fa-star star-animate" style="animation-delay: 0.3s;"></i>
+                            <i class="fas fa-star star-animate" style="animation-delay: 0.4s;"></i>
+                        </div>
+                    </div>
+                    <p class="text-gray-400">Customer Rating</p>
+                </div>
+                <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-4xl font-bold text-electric-500 mb-2">24/7</div>
+                    <p class="text-gray-400">Emergency Service</p>
+                </div>
+            </div>
+        </div>
+    </section>
